@@ -17,7 +17,7 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
     List<Category> categoryList ;
 
-    public CategoryAdapter(List<Category> categoryList) {
+    public CategoryAdapter() {
         categoryList =new ArrayList<Category>();
         categoryList.add(new Category("History",R.drawable.ic_favorite_black_24dp));
         categoryList.add(new Category("Kids",R.drawable.ic_favorite_black_24dp));

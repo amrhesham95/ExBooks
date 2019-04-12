@@ -12,13 +12,17 @@
         <activity
             android:name=".Screens.homeScreen.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Screens.loginScreen.LoginScreen">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".model.TestActivity"></activity>
+        <activity android:name=".Screens.loginScreen.LoginScreen">
+
         </activity>
     </application>
 
