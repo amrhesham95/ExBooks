@@ -1,5 +1,6 @@
 package com.example.exbooks.Screens.homeScreen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.exbooks.R;
+import com.example.exbooks.Screens.BookAddingScreen.BookAddingActivity;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,HomeContract.HomeViewInterface  {
@@ -43,8 +45,8 @@ public class HomeActivity extends AppCompatActivity
         addBookFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(HomeActivity.this, BookAddingActivity.class);
+                startActivity(intent);
             }
         });
 
