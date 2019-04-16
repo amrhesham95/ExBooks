@@ -1,5 +1,8 @@
 package com.example.exbooks.Screens.homeScreen;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.exbooks.R;
+import com.example.exbooks.Screens.booksOfCategoryScreen.BooksOfCategoryActivity;
 import com.example.exbooks.model.Category;
 
 import java.util.ArrayList;
@@ -16,8 +20,10 @@ import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
     List<Category> categoryList ;
+    Context context;
 
-    public CategoryAdapter() {
+    public CategoryAdapter(Context mContext) {
+        context=mContext;
         categoryList =new ArrayList<Category>();
         categoryList.add(new Category("History",R.drawable.ic_favorite_black_24dp));
         categoryList.add(new Category("Kids",R.drawable.ic_favorite_black_24dp));
@@ -41,6 +47,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int i) {
     categoryViewHolder.categoryName.setText(categoryList.get(i).getCategoryName());
     categoryViewHolder.categoryIcon.setImageResource(categoryList.get(i).getCategoryIcon());
+
+    categoryViewHolder.categoryName.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Activity activity=(Activity)context;
+            Intent intent = new Intent(activity, BooksOfCategoryActivity.class);
+            intent.putExtra("categoryName",categoryList.get(i).getCategoryName());
+            activity.startActivity(intent);
+
+        }
+    });
     }
 
     @Override
