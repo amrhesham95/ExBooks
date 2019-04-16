@@ -7,7 +7,7 @@ public interface BookAddingContract {
 
     }
 
-    interface  BookAddingPresenter extends Preseneter {
+    interface  BookAddingPresenter {
 
     }
 
