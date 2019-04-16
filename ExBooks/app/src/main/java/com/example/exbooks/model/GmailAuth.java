@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class GmailAuth {
@@ -86,6 +87,19 @@ public class GmailAuth {
 
     public Intent getSignInIntent(){
         return mGoogleSignInClient.getSignInIntent();
+    }
+
+    public void checkCurrentUser() {
+        // [START check_current_user]
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent=new Intent(loginPresenterInterface.getContext(),HomeActivity.class);
+            loginPresenterInterface.getContext().startActivity(intent);
+
+        } else {
+            // No user is signed in
+        }
+        // [END check_current_user]
     }
 }
 
