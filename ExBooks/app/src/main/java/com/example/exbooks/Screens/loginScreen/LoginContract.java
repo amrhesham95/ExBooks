@@ -12,8 +12,9 @@ public interface LoginContract {
     }
 
     interface  loginPresenterInterface extends Preseneter {
-        void loginGmail();
+        void normalLogin(String email,String password);
         void callThrowInOnActivityResult(Intent data);
         Intent getSignInIntent();
+        public void checkCurrentUser();
     }
 }

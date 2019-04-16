@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exbooks.R;
@@ -23,7 +25,16 @@ import com.example.exbooks.model.ImageStorageService;
 
 import java.io.File;
 import java.io.IOException;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.api.Places;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BookAddingActivity extends AppCompatActivity implements BookAddingContract.BookAddingView {
@@ -41,6 +52,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
     Uri image_Uri ;
 
     BookAddingContract.BookAddingPresenter bookAddingPresenter ;
+    Place returnedPlace;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,6 +174,26 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
                 imgType = IMAGE_URI ;
             }
         }
+
+       Places.initialize (getApplicationContext(),new String("AIzaSyAsN6Y4KcSYrJEYZKwo9dxNEIdMDVEvnZ8"));
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+            autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                returnedPlace=place;
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i("autoCompleteError", "An error occurred: " + status);
+            }
+        });
 
     }
 

@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import com.example.exbooks.R;
 import com.example.exbooks.Screens.BookAddingScreen.BookAddingActivity;
+import com.example.exbooks.Screens.booksOfCategoryScreen.BooksOfCategoryActivity;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,HomeContract.HomeViewInterface  {
@@ -36,10 +37,18 @@ public class HomeActivity extends AppCompatActivity
         categoriesRecyleView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         categoriesRecyleView.setLayoutManager(layoutManager);
-        categoryAdapter = new CategoryAdapter();
+        categoryAdapter = new CategoryAdapter(this);
         categoriesRecyleView.setAdapter(categoryAdapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        categoriesRecyleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, BooksOfCategoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton addBookFab = (FloatingActionButton) findViewById(R.id.fab);
         addBookFab.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +117,7 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logOut) {
 
         }
 
