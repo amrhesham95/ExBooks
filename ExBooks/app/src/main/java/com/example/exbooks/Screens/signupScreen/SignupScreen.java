@@ -10,6 +10,7 @@ import com.example.exbooks.R;
 public class SignupScreen extends AppCompatActivity implements SignupContract.SignupViewInterface {
     TextInputEditText emailTF;
     TextInputEditText passwordTF;
+    TextInputEditText phoneTF;
     Button submitButton;
     SignupContract.SignupPresenterInterface signupPresenterInterface;
     @Override
@@ -19,19 +20,23 @@ public class SignupScreen extends AppCompatActivity implements SignupContract.Si
         emailTF=findViewById(R.id.emailTFID);
         passwordTF=findViewById(R.id.passwordTFID);
         submitButton=findViewById(R.id.submitBtnID);
+        phoneTF=findViewById(R.id.phoneNumberTFID);
         signupPresenterInterface=new SignupImpl(this);
         submitButton.setOnClickListener((event)->{
-            signupPresenterInterface.signup(getEmail(),getPassword());
+            signupPresenterInterface.signup(getEmail(),getPassword(),getPhone());
+            this.finish();
         });
     }
 
-    @Override
+
     public String getEmail() {
         return emailTF.getText().toString();
     }
 
-    @Override
+
     public String getPassword() {
         return passwordTF.getText().toString();
     }
+
+    public String getPhone(){return phoneTF.getText().toString();}
 }

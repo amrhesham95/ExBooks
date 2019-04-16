@@ -15,5 +15,6 @@ public interface LoginContract {
         void normalLogin(String email,String password);
         void callThrowInOnActivityResult(Intent data);
         Intent getSignInIntent();
+        public void checkCurrentUser();
     }
 }

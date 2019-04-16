@@ -15,8 +15,8 @@ public class SignupImpl implements SignupContract.SignupPresenterInterface {
 
 
     @Override
-    public void signup(String email, String password) {
-        normalAuth.NormalSignup(email,password);
+    public void signup(String email, String password,String phone) {
+        normalAuth.NormalSignup(email,password,phone);
     }
 
     @Override

@@ -50,6 +50,11 @@ public class LoginPresenterImpl implements LoginContract.loginPresenterInterface
     }
 
     @Override
+    public void checkCurrentUser() {
+        gmailAuth.checkCurrentUser();
+    }
+
+    @Override
     public Context getContext() {
         return (Context) loginViewInterface;
     }

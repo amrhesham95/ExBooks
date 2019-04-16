@@ -34,6 +34,7 @@ public class LoginScreen extends AppCompatActivity implements LoginContract.logi
         signUpButton=findViewById(R.id.signupBtnID);
         normalSigninButton=findViewById(R.id.normalLoginBtn);
         loginPresenterInterface = new LoginPresenterImpl(this);
+        loginPresenterInterface.checkCurrentUser();
         normalSigninButton.setOnClickListener((event)->{
             loginPresenterInterface.normalLogin(emailTF.getText().toString(),passwordTF.getText().toString());
         });

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.exbooks.R;
+import com.example.exbooks.Screens.AfterGmailActivity;
 import com.example.exbooks.Screens.homeScreen.HomeActivity;
 import com.example.exbooks.Screens.loginScreen.LoginContract;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class GmailAuth {
@@ -67,7 +69,7 @@ public class GmailAuth {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             //Log.d(TAG, "signInWithCredential:success");
-                            Intent intent = new Intent(loginPresenterInterface.getContext(), HomeActivity.class);
+                            Intent intent = new Intent(loginPresenterInterface.getContext(), AfterGmailActivity.class);
                             loginPresenterInterface.getContext().startActivity(intent);
                             //FirebaseUser user = firebaseAuth.getCurrentUser();
                             //updateUI(user);
@@ -85,6 +87,19 @@ public class GmailAuth {
 
     public Intent getSignInIntent(){
         return mGoogleSignInClient.getSignInIntent();
+    }
+
+    public void checkCurrentUser() {
+        // [START check_current_user]
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent=new Intent(loginPresenterInterface.getContext(),HomeActivity.class);
+            loginPresenterInterface.getContext().startActivity(intent);
+
+        } else {
+            // No user is signed in
+        }
+        // [END check_current_user]
     }
 }
 

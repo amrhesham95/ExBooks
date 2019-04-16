@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
 
 public class SignupAuth {
     SignupContract.SignupPresenterInterface signupPresenterInterface;
@@ -21,16 +22,19 @@ public class SignupAuth {
 
     }
 
-    public void NormalSignup(String email,String password){
+    public void NormalSignup(String email,String password,String phone){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) signupPresenterInterface.getContext(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            User user=new User(email,phone);
+                            UserDBService userDBService=new UserDBService();
+                            userDBService.addUser(user);
                             Log.i("log","Sign up successfully");
                             Toast.makeText(signupPresenterInterface.getContext(), "Sign up successfully", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //FirebaseUser user = mAuth.getCurrentUser();
                             ((Activity) signupPresenterInterface.getContext()).finish();
 
                             //updateUI(user);
