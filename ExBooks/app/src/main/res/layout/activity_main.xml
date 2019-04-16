@@ -6,17 +6,20 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".Screens.loginScreen.LoginScreen">
+    tools:context=".Screens.loginScreen.LoginScreen"
+    android:background="@drawable/loginbackground">
 
     <Button
         android:id="@+id/gmailLoginBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="235dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="72dp"
+        android:background="@drawable/new_btn"
         android:focusedByDefault="true"
         android:text="login with gmail"
+        android:textColor="@color/colorFocused"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,15 +38,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/loginEmailTFID"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="41dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/colorFocused"
+
             android:focusedByDefault="false"
             android:hint="Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:drawableLeft="@drawable/username_layerlist"/>
 
 
     </android.support.design.widget.TextInputLayout>
@@ -59,13 +67,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <android.support.design.widget.TextInputEditText
         android:id="@+id/loginPasswordTFID"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:layout_marginTop="48dp"
+        android:background="@drawable/edittext_background"
+        android:textColor="@color/colorFocused"
         android:focusedByDefault="false"
         android:hint="password"
         android:inputType="textPassword"
@@ -73,13 +84,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        android:drawableLeft="@drawable/password_layerlist"/>
 
     <Button
         android:id="@+id/normalLoginBtn"
-        android:layout_width="153dp"
+        android:layout_width="240dp"
         android:layout_height="49dp"
         android:layout_marginTop="49dp"
+        android:background="@drawable/new_btn"
+        android:textColor="@color/colorFocused"
         android:text="Login"
         app:layout_constraintBottom_toTopOf="@+id/gmailLoginBtn"
         app:layout_constraintEnd_toEndOf="@+id/gmailLoginBtn"
@@ -92,10 +106,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:text="signup"
+        android:background="#00000000"
+        android:text="Don't you have an account ?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gmailLoginBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/gmailLoginBtn"
+        app:layout_constraintVertical_bias="0.48"
+        android:textColor="@color/colorFocused"/>
 </android.support.constraint.ConstraintLayout>
