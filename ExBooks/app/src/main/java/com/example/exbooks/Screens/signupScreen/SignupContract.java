@@ -12,7 +12,7 @@ public interface SignupContract {
     }
 
     interface SignupPresenterInterface extends Preseneter {
-        void signup (String email,String password);
+        void signup (String email,String password,String phone);
     }
 }
 

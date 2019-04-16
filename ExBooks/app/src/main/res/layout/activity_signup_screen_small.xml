@@ -7,24 +7,23 @@
     tools:context=".Screens.signupScreen.SignupScreen">
 
 
-
-
     <android.support.design.widget.TextInputLayout
         android:id="@+id/passwordLayoutID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
         android:focusedByDefault="false"
-        app:layout_constraintBottom_toTopOf="@+id/submitBtnID"
+        app:layout_constraintBottom_toTopOf="@+id/phoneNumberLayoutID"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLayoutID">
+        app:layout_constraintEnd_toStartOf="@+id/phoneNumberLayoutID"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/passwordTFID"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="43dp"
             android:focusedByDefault="false"
             android:hint="Password"
             android:inputType="textEmailAddress"
@@ -32,6 +31,32 @@
             tools:layout_editor_absoluteY="88dp" />
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/phoneNumberLayoutID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginBottom="8dp"
+        android:focusedByDefault="false"
+        app:layout_constraintBottom_toTopOf="@+id/loginPasswordTFID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/emailLayoutID"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toEndOf="@+id/passwordLayoutID"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/phoneNumberTFID"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:focusedByDefault="false"
+            android:hint="Phone"
+            android:inputType="phone"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="88dp" />
+    </android.support.design.widget.TextInputLayout>
 
 
     <android.support.design.widget.TextInputLayout
@@ -39,10 +64,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="8dp"
         android:focusedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/passwordLayoutID"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/submitBtnID"
+        app:layout_constraintHorizontal_bias="0.718"
+        app:layout_constraintStart_toEndOf="@+id/phoneNumberLayoutID"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -64,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="492dp"
+        android:layout_marginTop="732dp"
         android:layout_marginBottom="8dp"
         android:focusedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/loginPasswordTFID"
@@ -76,13 +105,14 @@
     <Button
         android:id="@+id/submitBtnID"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLayoutID" />
+        app:layout_constraintTop_toBottomOf="@+id/emailLayoutID"
+        app:layout_constraintVertical_bias="0.533" />
 </android.support.constraint.ConstraintLayout>

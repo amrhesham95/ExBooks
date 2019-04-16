@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.exbooks.R;
+import com.example.exbooks.Screens.AfterGmailActivity;
 import com.example.exbooks.Screens.homeScreen.HomeActivity;
 import com.example.exbooks.Screens.loginScreen.LoginContract;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -67,7 +68,7 @@ public class GmailAuth {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             //Log.d(TAG, "signInWithCredential:success");
-                            Intent intent = new Intent(loginPresenterInterface.getContext(), HomeActivity.class);
+                            Intent intent = new Intent(loginPresenterInterface.getContext(), AfterGmailActivity.class);
                             loginPresenterInterface.getContext().startActivity(intent);
                             //FirebaseUser user = firebaseAuth.getCurrentUser();
                             //updateUI(user);
