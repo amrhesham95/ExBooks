@@ -2,7 +2,7 @@
     <string name="app_name">ExBooks</string>
     <string name="phoneNumberString">ex : 01116243075</string>
     <string name="phone">phone</string>
-    <string name="uploadImgBtn">Upload</string>
+    <string name="uploadImgBtn">Choose</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="addBtn">Add</string>

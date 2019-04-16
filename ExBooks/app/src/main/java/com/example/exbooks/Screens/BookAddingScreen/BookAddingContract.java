@@ -1,5 +1,7 @@
 package com.example.exbooks.Screens.BookAddingScreen;
 
+import com.example.exbooks.model.Book;
+
 public interface BookAddingContract {
     interface  BookAddingView{
 
@@ -7,6 +9,7 @@ public interface BookAddingContract {
 
     interface  BookAddingPresenter{
 
+        public void addBook(Book book);
     }
 
 }
