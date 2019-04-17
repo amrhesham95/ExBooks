@@ -156,7 +156,6 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         });
 
 
-
     }
 
 

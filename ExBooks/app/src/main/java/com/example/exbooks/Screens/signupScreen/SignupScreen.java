@@ -24,7 +24,6 @@ public class SignupScreen extends AppCompatActivity implements SignupContract.Si
         signupPresenterInterface=new SignupImpl(this);
         submitButton.setOnClickListener((event)->{
             signupPresenterInterface.signup(getEmail(),getPassword(),getPhone());
-            this.finish();
         });
     }
 

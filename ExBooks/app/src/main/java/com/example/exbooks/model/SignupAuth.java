@@ -23,16 +23,18 @@ public class SignupAuth {
     }
 
     public void NormalSignup(String email,String password,String phone){
+        Log.i("myLog","inside NormalSignup");
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) signupPresenterInterface.getContext(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            Log.i("myLog","inside onComplete");
                             User user=new User(email,phone);
                             UserDBService userDBService=new UserDBService();
                             userDBService.addUser(user);
-                            Log.i("log","Sign up successfully");
+                            Log.i("myLog","Sign up successfully");
                             Toast.makeText(signupPresenterInterface.getContext(), "Sign up successfully", Toast.LENGTH_SHORT).show();
                             //FirebaseUser user = mAuth.getCurrentUser();
                             ((Activity) signupPresenterInterface.getContext()).finish();
@@ -40,7 +42,7 @@ public class SignupAuth {
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.i("log",task.getException().toString());
+                            Log.i("myLog",task.getException().toString());
                             Toast.makeText(signupPresenterInterface.getContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             //updateUI(null);
