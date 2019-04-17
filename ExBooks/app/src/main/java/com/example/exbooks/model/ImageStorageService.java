@@ -3,9 +3,12 @@ package com.example.exbooks.model;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.exbooks.Presenter;
+import com.example.exbooks.Screens.BookAddingScreen.BookAddingContract;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -14,17 +17,40 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 
-public class ImageStorageService {
+public class ImageStorageService extends AsyncTask<Bitmap,Void, String> {
+
     FirebaseStorage storage ;
     StorageReference storageReference ;
     Bitmap imageBitmap ;
     Uri imageUri ;
     String imgUrl;
+    String bookTitle , imgName;
+    BookAddingContract.BookAddingPresenter presenter;
+    int x=0;
 
-    public ImageStorageService(){
+    public ImageStorageService(BookAddingContract.BookAddingPresenter presenter, String bookTitle, String imgName){
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference("books");
+        this.bookTitle = bookTitle ;
+        this.imgName = imgName ;
+        this.presenter = presenter ;
 
+    }
+
+    @Override
+    protected String doInBackground(Bitmap... bitmaps) {
+        x++;
+        return storeImageBitmap(bitmaps[0],bookTitle,imgName);
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        x++;
+
+        System.out.println("onpostExecute:\n"+s);
+        System.out.println(x);
+        presenter.setBook(s);
     }
 
     public String storeImageBitmap(Bitmap imageBitmap , String bookTitle , String imgName){
@@ -55,6 +81,7 @@ public class ImageStorageService {
 
             }
         });
+        while(imgUrl==null){}
         return imgUrl ;
     }
 /*

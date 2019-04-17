@@ -1,6 +1,10 @@
 package com.example.exbooks.Screens.BookAddingScreen;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+
 import com.example.exbooks.model.Book;
+import com.example.exbooks.model.ImageStorageService;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -8,6 +12,7 @@ public class BookAddingPresenterImpl  implements BookAddingContract.BookAddingPr
 
     private FirebaseDatabase mFirebaseDatabase  ;
     private DatabaseReference mDatabaseReference ;
+    ImageStorageService imageStorageService ;
 
     BookAddingContract.BookAddingView bookAddingView ;
 
@@ -23,9 +28,29 @@ public class BookAddingPresenterImpl  implements BookAddingContract.BookAddingPr
     public void addBook(Book book){
         mFirebaseDatabase  = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference("books");
+        System.out.println("--------"+book.getImgUrl());
         mDatabaseReference.child(book.getCategory()).child(mDatabaseReference.push().getKey()).setValue(book);
 
 
 
+
     }
+
+    @Override
+    public void storeImageBitmap(Bitmap image_bitmap, String title, String title1) {
+        imageStorageService = new ImageStorageService(this,title,title1);
+        imageStorageService.execute(image_bitmap);
+
+    }
+
+    @Override
+    public void setBook(String url ) {
+        this.bookAddingView.setBook(url);
+    }
+
+    @Override
+    public Context getContext() {
+        return (Context) bookAddingView;
+    }
+
 }

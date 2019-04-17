@@ -11,6 +11,7 @@ public class Book implements Serializable {
     private String description;
     private String location ;
     private String imgUrl ;
+    private User user ;
    // FirebaseUser owner = null;
 
     public Book() {
@@ -56,6 +57,13 @@ public class Book implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 /*    public FirebaseUser getOwner() {
         return owner;
     }

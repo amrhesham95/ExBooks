@@ -1,7 +1,11 @@
 package com.example.exbooks.Screens.bookDetailesScreen;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +19,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
     TextView bookCategory;
     TextView bookDescription;
     TextView bookLocation;
+    ImageView bookImgView ;
     Book book;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +31,17 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         bookCategory=(TextView)findViewById(R.id.detailesBookCategory);
         bookDescription=(TextView)findViewById(R.id.detailesBookDescription);
         bookLocation=(TextView)findViewById(R.id.detailesBookLocation);
+        bookImgView = findViewById(R.id.bookImageInDetailesActivity);
         setDataOfBook();
+        Button callBtn = findViewById(R.id.call_btn);
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:01121668135"));
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -35,5 +50,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         bookDescription.setText(book.getDescription());
         bookLocation.setText(book.getLocation());
         bookCategory.setText(book.getCategory());
+        System.out.println("bookUrl->>>   "+book.getImgUrl());
+        bookDetailesPresenterInterface.getBookImg(book.getImgUrl(),bookImgView);
     }
 }
