@@ -28,6 +28,7 @@ public class GmailAuth {
     GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
 
+
     public GmailAuth(LoginContract.loginPresenterInterface loginPresenterInterface) {
 
         this.loginPresenterInterface=loginPresenterInterface;
@@ -100,6 +101,10 @@ public class GmailAuth {
             // No user is signed in
         }
         // [END check_current_user]
+    }
+
+    public void signOut(){
+        mAuth.signOut();
     }
 }
 
