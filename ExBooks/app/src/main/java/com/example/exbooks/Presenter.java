@@ -2,6 +2,6 @@ package com.example.exbooks;
 
 import android.content.Context;
 
-public interface Preseneter {
-    Context getContext();
+public interface Presenter {
+    public Context getContext();
 }

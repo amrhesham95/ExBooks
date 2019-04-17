@@ -47,20 +47,19 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
     int imgType = 0 ;
 
     ImageView imageView = null;
-    ImageStorageService imageStorageService ;
     Bitmap image_Bitmap ;
     Uri image_Uri ;
-
+    String url  ;
     BookAddingContract.BookAddingPresenter bookAddingPresenter ;
     Place returnedPlace;
+    Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_adding);
         bookAddingPresenter = new BookAddingPresenterImpl(this);
         imageView = findViewById(R.id.imageView);
-        imageStorageService = new ImageStorageService();
-        Spinner spinner = findViewById(R.id.categSpinner);
+        spinner = findViewById(R.id.categSpinner);
 
         List<String> categories = new ArrayList<String>();
         categories.add("History");
@@ -112,26 +111,20 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             @Override
             public void onClick(View v) {
                 EditText title = findViewById(R.id.titleET);
-                EditText desc  = findViewById(R.id.descET);
-                String categ = spinner.getSelectedItem().toString();
-                System.out.println("Category : "+categ);
 
-                Book book = new Book();
-                book.setTitle(title.getText().toString());
-                book.setDescription(desc.getText().toString());
-                book.setCategory(categ);
-                book.setLocation("Maadi");
+//                System.out.println(returnedPlace.getAddress());
+//                imageStorageService = new ImageStorageService(this,);
 
-                if(imgType == IMAGE_BITMAP){
-                    String url  = imageStorageService.storeImageBitmap(image_Bitmap,book.getTitle(),book.getTitle());
-                    book.setImgUrl(url);
+                //              if(imgType == IMAGE_BITMAP){
+                    bookAddingPresenter.storeImageBitmap(image_Bitmap,title.getText().toString(),title.getText().toString());
+//                    imageStorageService.storeImageBitmap(image_Bitmap,book.getTitle(),book.getTitle());
 
 
-                }else if(imgType == IMAGE_URI){
+
+/*                }else if(imgType == IMAGE_URI){
 
                 }
-
-                bookAddingPresenter.addBook(book);
+*/
                 Toast.makeText(BookAddingActivity.this, "Book is added Successfully", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -197,5 +190,21 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
 
     }
 
+    @Override
+    public void setBook(String url) {
+        EditText title = findViewById(R.id.titleET);
+        EditText desc  = findViewById(R.id.descET);
+        String categ = spinner.getSelectedItem().toString();
+        System.out.println("Category : "+categ);
+
+        Book book = new Book();
+        book.setTitle(title.getText().toString());
+        book.setDescription(desc.getText().toString());
+        book.setCategory(categ);
+        book.setLocation("Maadi");
+        book.setImgUrl(url);
+        System.out.println("imgurl inside adding :\n"+url);
+        bookAddingPresenter.addBook(book);
+    }
 
 }

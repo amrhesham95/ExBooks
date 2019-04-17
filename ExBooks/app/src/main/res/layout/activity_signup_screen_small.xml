@@ -29,11 +29,10 @@
         android:layout_height="183dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/readinggg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="@+id/relativeLayout" />
@@ -79,10 +78,11 @@
         app:layout_constraintBottom_toTopOf="@+id/phoneNumberLayoutID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/submitBtnID"
-        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintHorizontal_bias="0.717"
         app:layout_constraintStart_toEndOf="@+id/phoneNumberLayoutID"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLayoutID">
+        app:layout_constraintTop_toBottomOf="@+id/emailLayoutID"
+        app:layout_constraintVertical_bias="0.0">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/passwordTFID"
@@ -117,13 +117,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="552dp"
+        android:layout_marginTop="436dp"
         android:layout_marginBottom="8dp"
         android:focusedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/loginPasswordTFID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/emailLayoutID"
-        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/passwordLayoutID"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -153,5 +153,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberLayoutID" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberLayoutID"
+        app:layout_constraintVertical_bias="0.169" />
 </android.support.constraint.ConstraintLayout>

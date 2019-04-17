@@ -23,4 +23,5 @@ public class SignupImpl implements SignupContract.SignupPresenterInterface {
     public Context getContext() {
         return (Context) signupViewInterface;
     }
+
 }

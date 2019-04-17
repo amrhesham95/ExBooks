@@ -1,8 +1,6 @@
 package com.example.exbooks.Screens.signupScreen;
 
-import android.content.Intent;
-
-import com.example.exbooks.Preseneter;
+import com.example.exbooks.Presenter;
 
 public interface SignupContract {
 
@@ -11,7 +9,7 @@ public interface SignupContract {
         String getPassword();
     }
 
-    interface SignupPresenterInterface extends Preseneter {
+    interface SignupPresenterInterface extends Presenter {
         void signup (String email,String password,String phone);
     }
 }
