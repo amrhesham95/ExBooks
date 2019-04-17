@@ -3,6 +3,7 @@ package com.example.exbooks.Screens.signupScreen;
 import android.content.Context;
 
 import com.example.exbooks.model.SignupAuth;
+import com.example.exbooks.model.User;
 
 public class SignupImpl implements SignupContract.SignupPresenterInterface {
     SignupContract.SignupViewInterface signupViewInterface;
@@ -17,6 +18,7 @@ public class SignupImpl implements SignupContract.SignupPresenterInterface {
     @Override
     public void signup(String email, String password,String phone) {
         normalAuth.NormalSignup(email,password,phone);
+
     }
 
     @Override
