@@ -17,6 +17,7 @@ public interface BookAddingContract {
         public void storeImageBitmap(Bitmap image_bitmap, String title, String title1);
 
         public void setBook(String url);
+        public String getUser();
 
     }
 

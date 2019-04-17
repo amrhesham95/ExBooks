@@ -239,7 +239,8 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         book.setDescription(desc.getText().toString());
         book.setCategory(categ);
         book.setLocation("Maadi");
-        book.setUser(user);
+        String userUid = bookAddingPresenter.getUser();
+        book.setUser(userUid);
         book.setImgUrl(url);
         System.out.println("imgurl inside adding :\n"+url);
         bookAddingPresenter.addBook(book);

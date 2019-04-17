@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.exbooks.MessageActivity;
 import com.example.exbooks.R;
 import com.example.exbooks.model.Book;
 
@@ -21,6 +22,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
     TextView bookLocation;
     ImageView bookImgView ;
     Book book;
+    Button chatBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         bookDescription=(TextView)findViewById(R.id.detailesBookDescription);
         bookLocation=(TextView)findViewById(R.id.detailesBookLocation);
         bookImgView = findViewById(R.id.bookImageInDetailesActivity);
+        chatBtn=findViewById(R.id.chat_btn);
         setDataOfBook();
         Button callBtn = findViewById(R.id.call_btn);
         callBtn.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +44,11 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
                 intent.setData(Uri.parse("tel:01121668135"));
                 startActivity(intent);
             }
+        });
+        chatBtn.setOnClickListener((event)->{
+            Intent intent=new Intent(this, MessageActivity.class);
+            intent.putExtra("userEmail",book.getUser());
+            startActivity(intent);
         });
 
     }

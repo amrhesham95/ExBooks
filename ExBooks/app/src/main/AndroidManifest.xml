@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.exbooks">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Screens.bookDetailesScreen.BookDetailesActivity"></activity>
+        <activity
+            android:name=".MessageActivity"
+            android:label="@string/title_activity_message"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Screens.bookDetailesScreen.BookDetailesActivity" />
         <activity android:name=".Screens.booksOfCategoryScreen.BooksOfCategoryActivity" />
-
-        <activity android:name=".Screens.AfterGmailActivity"></activity>
-
+        <activity android:name=".Screens.AfterGmailActivity" />
         <activity android:name=".Screens.signupScreen.SignupScreen" />
         <activity android:name=".Screens.BookAddingScreen.BookAddingActivity" />
         <activity
@@ -30,10 +38,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-feature android:name="android.hardware.camera"
-        android:required="true" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

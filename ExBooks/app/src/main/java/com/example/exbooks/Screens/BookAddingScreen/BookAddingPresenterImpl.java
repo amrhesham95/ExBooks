@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 
 import com.example.exbooks.model.Book;
 import com.example.exbooks.model.ImageStorageService;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -46,6 +48,13 @@ public class BookAddingPresenterImpl  implements BookAddingContract.BookAddingPr
     @Override
     public void setBook(String url ) {
         this.bookAddingView.setBook(url);
+    }
+
+    @Override
+    public String getUser() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user.getUid();
+
     }
 
     @Override
