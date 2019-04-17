@@ -55,6 +55,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
     BookAddingContract.BookAddingPresenter bookAddingPresenter ;
     Place returnedPlace;
     Spinner spinner;
+    User user ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,10 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         bookAddingPresenter = new BookAddingPresenterImpl(this);
         imageView = findViewById(R.id.imageView);
         spinner = findViewById(R.id.categSpinner);
-        placeTextView=findViewById(R.id.placeTVID);
+
+        //hna ha7ot el user ele h5do mn el intent
+        user = new User("sahar96hany@gmail.com","011216688135");
+
         List<String> categories = new ArrayList<String>();
         categories.add("History");
         categories.add("Kids");
@@ -154,6 +158,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             }
         });
 
+
     }
 
 
@@ -193,7 +198,30 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
                 imgType = IMAGE_URI ;
             }
         }
+
         super.onActivityResult(requestCode,resultCode,data);
+
+/*
+       Places.initialize (getApplicationContext(),new String("AIzaSyAsN6Y4KcSYrJEYZKwo9dxNEIdMDVEvnZ8"));
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+            autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                returnedPlace=place;
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i("autoCompleteError", "An error occurred: " + status);
+            }
+        });
+*/
 
     }
 
@@ -204,7 +232,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         String categ = spinner.getSelectedItem().toString();
         System.out.println("Category : "+categ);
 //
-        User user = new User("sahar96hany@gmail.com","011216688135");
+//        User user = new User("sahar96hany@gmail.com","011216688135");
   //
         Book book = new Book();
         book.setTitle(title.getText().toString());
