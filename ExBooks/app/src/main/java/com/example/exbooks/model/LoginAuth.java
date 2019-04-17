@@ -6,7 +6,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.exbooks.Screens.homeScreen.HomeActivity;
+import com.example.exbooks.Screens.homeScreen.HomeContract;
 import com.example.exbooks.Screens.loginScreen.LoginContract;
+import com.example.exbooks.Screens.loginScreen.LoginScreen;
 import com.example.exbooks.Screens.signupScreen.SignupContract;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,7 +17,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginAuth {
     LoginContract.loginPresenterInterface loginPresenterInterface;
+    HomeContract.HomePresenterInterface homePresenterInterface;
     private FirebaseAuth mAuth;
+    public LoginAuth(HomeContract.HomePresenterInterface homePresenterInterface) {
+        this.homePresenterInterface=homePresenterInterface;
+        mAuth=FirebaseAuth.getInstance();
+
+    }
+
     public LoginAuth(LoginContract.loginPresenterInterface loginPresenterInterface) {
         this.loginPresenterInterface=loginPresenterInterface;
         mAuth=FirebaseAuth.getInstance();
@@ -44,6 +53,10 @@ public class LoginAuth {
                         // ...
                     }
                 });
+
+    }
+    public void signOut(){
+        mAuth.signOut();
 
     }
 }
