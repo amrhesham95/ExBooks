@@ -1,7 +1,10 @@
 package com.example.exbooks.Screens.booksOfCategoryScreen;
 
+import android.support.annotation.NonNull;
+
 import com.example.exbooks.model.Book;
 import com.example.exbooks.model.BookDBService;
+
 
 import java.util.ArrayList;
 
@@ -9,6 +12,7 @@ public class BooksOfCategoryPresenterImp implements BooksOfCategoryContract.Book
     BookDBService bookDBService;
     ArrayList<Book> catgeoryBooks;
     BooksOfCategoryContract.BooksOfCategoryViewInterface booksOfCategoryInterface;
+
     public BooksOfCategoryPresenterImp(BooksOfCategoryContract.BooksOfCategoryViewInterface booksOfCategoryInterface) {
         this.booksOfCategoryInterface=booksOfCategoryInterface;
         bookDBService = new BookDBService(this);
@@ -35,4 +39,5 @@ public class BooksOfCategoryPresenterImp implements BooksOfCategoryContract.Book
     public void setCategoryName(String categoryName) {
         bookDBService.findByCategory(categoryName);
     }
+
 }
