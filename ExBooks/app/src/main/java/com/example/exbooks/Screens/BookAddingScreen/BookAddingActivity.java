@@ -25,6 +25,8 @@ import com.example.exbooks.model.ImageStorageService;
 
 import java.io.File;
 import java.io.IOException;
+
+import com.example.exbooks.model.User;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.model.Place;
@@ -196,12 +198,15 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         EditText desc  = findViewById(R.id.descET);
         String categ = spinner.getSelectedItem().toString();
         System.out.println("Category : "+categ);
-
+//
+        User user = new User("sahar96hany@gmail.com","011216688135");
+  //
         Book book = new Book();
         book.setTitle(title.getText().toString());
         book.setDescription(desc.getText().toString());
         book.setCategory(categ);
         book.setLocation("Maadi");
+        book.setUser(user);
         book.setImgUrl(url);
         System.out.println("imgurl inside adding :\n"+url);
         bookAddingPresenter.addBook(book);

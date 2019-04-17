@@ -6,6 +6,7 @@ public class User implements Serializable {
     String email;
     String phone;
 
+    public User(){}
     public User(String email,String phone){
         this.email=email;
         this.phone=phone;
