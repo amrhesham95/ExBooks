@@ -47,7 +47,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
     static final int IMAGE_BITMAP = 1 ;
     static final int IMAGE_URI    = 2 ;
     int imgType = 0 ;
-
+    TextView placeTextView;
     ImageView imageView = null;
     Bitmap image_Bitmap ;
     Uri image_Uri ;
@@ -62,7 +62,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         bookAddingPresenter = new BookAddingPresenterImpl(this);
         imageView = findViewById(R.id.imageView);
         spinner = findViewById(R.id.categSpinner);
-
+        placeTextView=findViewById(R.id.placeTVID);
         List<String> categories = new ArrayList<String>();
         categories.add("History");
         categories.add("Kids");
@@ -142,6 +142,8 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
+                Toast.makeText(BookAddingActivity.this, place.toString(), Toast.LENGTH_SHORT).show();
+                placeTextView.setText(place.toString());
                 returnedPlace=place;
             }
 
@@ -172,6 +174,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -190,7 +193,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
                 imgType = IMAGE_URI ;
             }
         }
-
+        super.onActivityResult(requestCode,resultCode,data);
 
     }
 
