@@ -1,5 +1,7 @@
 package com.example.exbooks.model;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 public class Book implements Serializable {
@@ -8,7 +10,7 @@ public class Book implements Serializable {
     private String category;
     private String description;
     private String location ;
-    //private img ;
+    private String imgUrl ;
    // FirebaseUser owner = null;
 
     public Book() {
@@ -44,6 +46,14 @@ public class Book implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
 /*    public FirebaseUser getOwner() {
