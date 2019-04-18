@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.exbooks.MessageActivity;
+import com.example.exbooks.Screens.ChatScreen.MessageActivity;
 import com.example.exbooks.R;
 import com.example.exbooks.model.Book;
 
@@ -47,7 +47,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         });
         chatBtn.setOnClickListener((event)->{
             Intent intent=new Intent(this, MessageActivity.class);
-            intent.putExtra("userEmail",book.getUser());
+            intent.putExtra("userID",book.getUser());
             startActivity(intent);
         });
 

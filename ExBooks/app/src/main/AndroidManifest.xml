@@ -16,10 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Screens.chatHistoryScreen.ChatsActivity"></activity>
         <activity
-            android:name=".MessageActivity"
+            android:name=".Screens.ChatScreen.MessageActivity"
             android:label="@string/title_activity_message"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Screens.bookDetailesScreen.BookDetailesActivity" />
         <activity android:name=".Screens.booksOfCategoryScreen.BooksOfCategoryActivity" />
         <activity android:name=".Screens.AfterGmailActivity" />

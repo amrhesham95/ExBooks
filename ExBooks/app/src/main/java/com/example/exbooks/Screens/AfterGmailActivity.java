@@ -24,7 +24,7 @@ public class AfterGmailActivity extends AppCompatActivity {
         nextBtn=findViewById(R.id.nextBtnID);
         nextBtn.setOnClickListener((event)->{
             FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-            User user=new User(firebaseUser.getEmail(),phoneTF.getText().toString());
+            User user=new User(firebaseUser.getEmail(),phoneTF.getText().toString(),firebaseUser.getUid());
             UserDBService userDBService=new UserDBService();
             userDBService.addUser(user);
             Intent intent =new Intent (this,HomeActivity.class);

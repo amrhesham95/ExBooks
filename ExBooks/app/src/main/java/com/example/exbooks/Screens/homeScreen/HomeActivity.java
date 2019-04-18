@@ -15,10 +15,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.exbooks.R;
 import com.example.exbooks.Screens.BookAddingScreen.BookAddingActivity;
+import com.example.exbooks.Screens.ChatScreen.MessageActivity;
 import com.example.exbooks.Screens.booksOfCategoryScreen.BooksOfCategoryActivity;
+import com.example.exbooks.Screens.chatHistoryScreen.ChatsActivity;
+import com.google.firebase.auth.FirebaseAuth;
+
+import org.w3c.dom.Text;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,HomeContract.HomeViewInterface  {
@@ -26,7 +32,7 @@ public class HomeActivity extends AppCompatActivity
     private RecyclerView categoriesRecyleView;
     private RecyclerView.Adapter categoryAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
+    TextView navigationViewHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +47,6 @@ public class HomeActivity extends AppCompatActivity
         categoriesRecyleView.setAdapter(categoryAdapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         categoriesRecyleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +72,10 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View view = navigationView.getHeaderView(0);
+        navigationViewHeader=view.findViewById(R.id.navigationViewHeader);
+        navigationViewHeader.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
     }
 
     @Override
@@ -106,8 +115,10 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_chats) {
             // Handle the camera action
+            Intent intent=new Intent(this, ChatsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

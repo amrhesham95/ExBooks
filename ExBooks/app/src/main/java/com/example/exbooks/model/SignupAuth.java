@@ -31,7 +31,7 @@ public class SignupAuth {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.i("myLog","inside onComplete");
-                            User user=new User(email,phone);
+                            User user=new User(email,phone,mAuth.getUid());
                             UserDBService userDBService=new UserDBService();
                             userDBService.addUser(user);
                             Log.i("myLog","Sign up successfully");

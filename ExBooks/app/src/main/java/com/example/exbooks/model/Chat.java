@@ -1,10 +1,19 @@
 package com.example.exbooks.model;
 
 public class Chat {
-
     String sender;
-    String reciever;
+    String receiver;
     String message;
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+
 
     public String getSender() {
         return sender;
@@ -14,13 +23,9 @@ public class Chat {
         this.sender = sender;
     }
 
-    public String getReciever() {
-        return reciever;
-    }
 
-    public void setReciever(String reciever) {
-        this.reciever = reciever;
-    }
+
+
 
     public String getMessage() {
         return message;
@@ -33,9 +38,9 @@ public class Chat {
     public Chat() {
     }
 
-    public Chat(String sender, String reciever, String message) {
+    public Chat(String sender, String receiver, String message) {
         this.sender = sender;
-        this.reciever = reciever;
+        this.receiver = receiver;
         this.message = message;
     }
 

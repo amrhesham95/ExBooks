@@ -65,7 +65,6 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         spinner = findViewById(R.id.categSpinner);
 
         //hna ha7ot el user ele h5do mn el intent
-        user = new User("sahar96hany@gmail.com","011216688135");
 
         List<String> categories = new ArrayList<String>();
         categories.add("History");
