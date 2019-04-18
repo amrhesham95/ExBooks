@@ -2,6 +2,7 @@ package com.example.exbooks.Screens.bookDetailesScreen;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
     ImageView bookImgView ;
     Book book;
     Button chatBtn;
+    String ownerPhone ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +38,14 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         bookImgView = findViewById(R.id.bookImageInDetailesActivity);
         chatBtn=findViewById(R.id.chat_btn);
         setDataOfBook();
+        bookDetailesPresenterInterface.getBookOwnerPhone(book.getUser());
+
         Button callBtn = findViewById(R.id.call_btn);
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:01121668135"));
+                intent.setData(Uri.parse("tel:"+ownerPhone));
                 startActivity(intent);
             }
         });
@@ -50,6 +54,21 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
             intent.putExtra("userID",book.getUser());
             startActivity(intent);
         });
+
+
+        FloatingActionButton callFAB = findViewById(R.id.callFAB);
+        callFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+ownerPhone));
+                System.out.println("tel:"+ownerPhone);
+                startActivity(intent);
+
+            }
+        });
+
+
 
     }
 
@@ -60,5 +79,10 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         bookCategory.setText(book.getCategory());
         System.out.println("bookUrl->>>   "+book.getImgUrl());
         bookDetailesPresenterInterface.getBookImg(book.getImgUrl(),bookImgView);
+    }
+
+    @Override
+    public void setOwnerPhone(String phone) {
+        this.ownerPhone = phone ;
     }
 }

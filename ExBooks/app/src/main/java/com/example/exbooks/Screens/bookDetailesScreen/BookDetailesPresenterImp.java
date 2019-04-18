@@ -1,9 +1,16 @@
 package com.example.exbooks.Screens.bookDetailesScreen;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.example.exbooks.model.ImageDownloaderService;
+import com.example.exbooks.model.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class BookDetailesPresenterImp implements BookDetailesContract.BookDetailesPresenterInterface {
     BookDetailesContract.BookDetailesViewInterface bookDetailesViewInterface;
@@ -23,4 +30,22 @@ public class BookDetailesPresenterImp implements BookDetailesContract.BookDetail
     }
 
 
+    @Override
+    public void getBookOwnerPhone(String bookOwnerUID) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(bookOwnerUID);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User bookOwner = dataSnapshot.getValue(User.class);
+                bookDetailesViewInterface.setOwnerPhone(bookOwner.getPhone());
+                System.out.println("ownerphone= "+bookOwner.getPhone());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }
