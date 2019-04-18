@@ -14,11 +14,12 @@ import com.example.exbooks.Screens.ChatScreen.MessageActivity;
 import com.example.exbooks.model.User;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
     private Context context;
-    private  ArrayList<User> allUsers;
-    public UserAdapter(Context context, ArrayList<User> users) {
+    private  CopyOnWriteArrayList allUsers;
+    public UserAdapter(Context context, CopyOnWriteArrayList<User> users) {
         this.context=context;
         allUsers=users;
     }
@@ -35,7 +36,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         userViewHolder.usernameonChatsHistory.setText(allUsers.get(position).toString());
         userViewHolder.usernameonChatsHistory.setOnClickListener((event)->{
             Intent intent=new Intent(context, MessageActivity.class);
-            intent.putExtra("userID",allUsers.get(position).getUserUID());
+            intent.putExtra("userID",((User)(allUsers.get(position))).getUserUID());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
 

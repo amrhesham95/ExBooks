@@ -60,6 +60,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_adding);
+        placeTextView=findViewById(R.id.placeTVID);
         bookAddingPresenter = new BookAddingPresenterImpl(this);
         imageView = findViewById(R.id.imageView);
         spinner = findViewById(R.id.categSpinner);

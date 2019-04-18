@@ -1,6 +1,8 @@
 package com.example.exbooks.Screens.chatHistoryScreen;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 public class ChatsActivity extends AppCompatActivity {
     private RecyclerView chats_recycleView;
@@ -26,34 +30,36 @@ public class ChatsActivity extends AppCompatActivity {
     private UserAdapter userAdapter;
     FirebaseUser fuser;
     DatabaseReference reference;
-    ArrayList<User> usersList;
-    ArrayList<String> uidList;
+    CopyOnWriteArrayList<User> usersList;
+    ArrayList<String> uidListOfPplITalkedWith;
+    CopyOnWriteArraySet<User> usersSet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
-        chats_recycleView=(RecyclerView)findViewById(R.id.chats_recycler_view);
-        layoutManager=new LinearLayoutManager(getApplicationContext());
+        chats_recycleView = (RecyclerView) findViewById(R.id.chats_recycler_view);
+        layoutManager = new LinearLayoutManager(getApplicationContext());
         chats_recycleView.setLayoutManager(layoutManager);
         chats_recycleView.setHasFixedSize(true);
-        uidList= new ArrayList<>();
-        fuser= FirebaseAuth.getInstance().getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("chats");
+        uidListOfPplITalkedWith = new ArrayList<>();
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("chats");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                uidList.clear();
-                for(DataSnapshot snapshot :dataSnapshot.getChildren())
-                {
-                    Chat chat=snapshot.getValue(Chat.class);
-                    if(chat.getReceiver().equals(fuser.getUid()))
-                    {
-                        uidList.add(chat.getSender());
-                    }
-                    if(chat.getSender().equals(fuser.getUid()))
-                    {
-                        uidList.add(chat.getReceiver());
+                uidListOfPplITalkedWith.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Chat chat = snapshot.getValue(Chat.class);
+                    if (chat.getReceiver().equals(fuser.getUid())) {
+                        if (!uidListOfPplITalkedWith.contains(chat.getSender())) {
+                            uidListOfPplITalkedWith.add(chat.getSender());
+                        }
+                    } else if (chat.getSender().equals(fuser.getUid())) {
+                        if (!uidListOfPplITalkedWith.contains(chat.getReceiver())) {
+                            uidListOfPplITalkedWith.add(chat.getReceiver());
+                        }
                     }
                 }
                 readChatsHistory();
@@ -67,37 +73,37 @@ public class ChatsActivity extends AppCompatActivity {
         });
 
 
-
     }
-    public void readChatsHistory()
-    {
-        usersList=new ArrayList<>();
-        reference=FirebaseDatabase.getInstance().getReference("users");
+
+    public void readChatsHistory() {
+        usersList = new CopyOnWriteArrayList<>();
+        usersSet = new CopyOnWriteArraySet<>();
+        reference = FirebaseDatabase.getInstance().getReference("users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usersList.clear();
-                for(DataSnapshot snapshot :dataSnapshot.getChildren())
-                {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
                     User userFromSnapShot = snapshot.getValue(User.class);
 
-                    for(String uid:uidList)
-                    {
-                        if(userFromSnapShot.getUserUID().equals(uid))
-                        {
-                            if(usersList.size()!=0) {
-                                for (User currUser : usersList) {
-                                    if(!userFromSnapShot.getEmail().equals(currUser.getEmail())){
-                                        usersList.add(userFromSnapShot);
-                                    }
+                    for (String uid : uidListOfPplITalkedWith) {
+
+                        if (userFromSnapShot.getUserUID().equals(uid)) {
+
+                            if (usersList.size() != 0) {
+                                if(!usersList.contains(userFromSnapShot.getUserUID()))
+                                {
+                                    usersList.add(userFromSnapShot);
                                 }
-                            }else{
+
+                            } else {
                                 usersList.add(userFromSnapShot);
                             }
                         }
                     }
                 }
-                userAdapter = new UserAdapter(getApplicationContext(),usersList);
+                userAdapter = new UserAdapter(getApplicationContext(), usersList);
                 chats_recycleView.setAdapter(userAdapter);
             }
 
