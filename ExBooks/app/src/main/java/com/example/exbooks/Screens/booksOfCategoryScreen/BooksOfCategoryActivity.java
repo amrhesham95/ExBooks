@@ -27,7 +27,7 @@ public class BooksOfCategoryActivity extends AppCompatActivity implements BooksO
         layoutManager = new LinearLayoutManager(this);
         categoryBooksRecyleView.setLayoutManager(layoutManager);
         allBook=new ArrayList<>();
-        categoryBooksAdapter = new BooksOfCategoryAdapter(this,allBook);
+        categoryBooksAdapter = new BooksOfCategoryAdapter(this,allBook,0);
         categoryBooksRecyleView.setAdapter(categoryBooksAdapter);
         String categoryName=getIntent().getStringExtra("categoryName");
         booksOfCategoryPresenterInterface.setCategoryName(categoryName);
@@ -38,7 +38,7 @@ public class BooksOfCategoryActivity extends AppCompatActivity implements BooksO
 
     @Override
     public void setCategoryBookstoView(ArrayList<Book> books) {
-        categoryBooksAdapter = new BooksOfCategoryAdapter(this,books);
+        categoryBooksAdapter = new BooksOfCategoryAdapter(this,books,0);
         categoryBooksRecyleView.setAdapter(categoryBooksAdapter);
     }
 
