@@ -29,6 +29,7 @@ import java.io.IOException;
 import com.example.exbooks.model.User;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
@@ -54,8 +55,10 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
     String url  ;
     BookAddingContract.BookAddingPresenter bookAddingPresenter ;
     Place returnedPlace;
+    LatLng returnedPlaceLatLng;
     Spinner spinner;
     User user ;
+    String returnedPlaceName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +67,6 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         bookAddingPresenter = new BookAddingPresenterImpl(this);
         imageView = findViewById(R.id.imageView);
         spinner = findViewById(R.id.categSpinner);
-
         //hna ha7ot el user ele h5do mn el intent
 
         List<String> categories = new ArrayList<String>();
@@ -141,14 +143,15 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
         // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME,Place.Field.LAT_LNG));
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
                 Toast.makeText(BookAddingActivity.this, place.toString(), Toast.LENGTH_SHORT).show();
                 placeTextView.setText(place.toString());
-                returnedPlace=place;
+                returnedPlaceLatLng=place.getLatLng();
+                returnedPlaceName=place.getName();
             }
 
             @Override
@@ -238,10 +241,12 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         book.setTitle(title.getText().toString());
         book.setDescription(desc.getText().toString());
         book.setCategory(categ);
-        book.setLocation("Maadi");
+        book.setLocation(returnedPlaceName);
         String userUid = bookAddingPresenter.getUser();
         book.setUser(userUid);
         book.setImgUrl(url);
+        book.setReturnedPlaceLat(returnedPlaceLatLng.latitude);
+        book.setReturnedPlaceLong(returnedPlaceLatLng.longitude);
         System.out.println("imgurl inside adding :\n"+url);
         bookAddingPresenter.addBook(book);
     }
