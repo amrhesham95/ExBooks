@@ -71,11 +71,14 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
             startActivity(intent);
         });
         showMapBtn.setOnClickListener((event)->{
-            Intent intent = new Intent(this,MapActivity.class);
-            intent.putExtra("Lat",book.getReturnedPlaceLat());
-            intent.putExtra("Long",book.getReturnedPlaceLong());
-            intent.putExtra("myLocation",myLocationGlobal);
+            String geoUri = "http://maps.google.com/maps?q=loc:" + book.getReturnedPlaceLat() + "," + book.getReturnedPlaceLong();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
             startActivity(intent);
+//            Intent intent = new Intent(this,MapActivity.class);
+//            intent.putExtra("Lat",book.getReturnedPlaceLat());
+//            intent.putExtra("Long",book.getReturnedPlaceLong());
+//            intent.putExtra("myLocation",myLocationGlobal);
+//            startActivity(intent);
         });
 
 
