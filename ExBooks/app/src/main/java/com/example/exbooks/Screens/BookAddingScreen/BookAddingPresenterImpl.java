@@ -67,9 +67,12 @@ public class BookAddingPresenterImpl  implements BookAddingContract.BookAddingPr
             String userUid = getUser();
             book.setUser(userUid);
             book.setImgUrl(url);
-            book.setReturnedPlaceLat(returnedPlaceLatLng.latitude);
-            book.setReturnedPlaceLong(returnedPlaceLatLng.longitude);
-            System.out.println("imgurl inside adding :\n" + url);
+            if(returnedPlaceLatLng!=null)
+            {
+                book.setReturnedPlaceLat(returnedPlaceLatLng.latitude);
+                book.setReturnedPlaceLong(returnedPlaceLatLng.longitude);
+            }
+            System.out.println("img url inside adding :\n" + url);
             addBook(book);
         }else{
             Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
