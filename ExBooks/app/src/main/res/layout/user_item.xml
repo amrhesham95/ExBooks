@@ -4,7 +4,14 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/ripple"
+        android:layout_gravity="center"
+        >
     <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -15,18 +22,25 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="8dp"
-        app:cardBackgroundColor="@android:color/white">
-        <TextView
-            android:id="@+id/usernameonChatsHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="user name"
-            android:textSize="12sp"
-            android:layout_toRightOf="@id/userImage"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:textColor="#000"
-            android:layout_gravity="center"/>
+        app:cardBackgroundColor="@android:color/white"
+        app:cardElevation="10dp"
+        android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/usernameonChatsHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="user name"
+                android:textSize="12sp"
+                android:layout_toRightOf="@id/userImage"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:textColor="#000"
+                android:layout_gravity="center"/>
+
+
+
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -34,5 +48,6 @@
             android:src="@drawable/ic_chat"
             android:layout_marginTop="16dp"/>
     </android.support.v7.widget.CardView>
+    </com.balysv.materialripple.MaterialRippleLayout>
 
 </RelativeLayout>
