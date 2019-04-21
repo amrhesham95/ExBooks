@@ -11,6 +11,8 @@ public interface SignupContract {
 
     interface SignupPresenterInterface extends Presenter {
         void signup (String email,String password,String phone);
+
+        boolean checkPhone(String phone);
     }
 }
 

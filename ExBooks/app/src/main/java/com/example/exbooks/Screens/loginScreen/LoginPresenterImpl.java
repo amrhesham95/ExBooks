@@ -2,6 +2,7 @@ package com.example.exbooks.Screens.loginScreen;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.example.exbooks.model.GmailAuth;
 import com.example.exbooks.model.LoginAuth;
@@ -36,7 +37,18 @@ public class LoginPresenterImpl implements LoginContract.loginPresenterInterface
 
     @Override
     public void normalLogin(String email, String password) {
-        loginAuth.normalSignin(email,password);
+        if(email!=null && password!=null) {
+            boolean checkEmail    = email.equals("")    || email.contains(" ");
+            boolean checkPassword = password.equals("") || password.contains(" ");
+
+            if(!checkEmail && !checkPassword) {
+                loginAuth.normalSignin(email, password);
+            }else{
+                Toast.makeText(getContext(), "Invalid email and password", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
