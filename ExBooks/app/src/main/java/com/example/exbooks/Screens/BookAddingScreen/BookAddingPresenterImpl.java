@@ -2,9 +2,11 @@ package com.example.exbooks.Screens.BookAddingScreen;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.widget.Toast;
 
 import com.example.exbooks.model.Book;
 import com.example.exbooks.model.ImageStorageService;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +49,29 @@ public class BookAddingPresenterImpl  implements BookAddingContract.BookAddingPr
 
     @Override
     public void setBook(String url ) {
-        this.bookAddingView.setBook(url);
+
+        String titleText = bookAddingView.getBookTitle();
+        String descText = bookAddingView.getDescription();
+        String returnedPlaceName = bookAddingView.getReturnedPlaceName();
+        LatLng returnedPlaceLatLng = bookAddingView.getReturnedPlaceLatLng();
+        String categ = bookAddingView.getCategory();
+
+        if(!titleText.trim().equals("") && !descText.trim().equals("")) {
+            Book book = new Book();
+            book.setTitle(titleText);
+            book.setDescription(descText);
+            book.setCategory(categ);
+            book.setLocation(returnedPlaceName);
+            String userUid = getUser();
+            book.setUser(userUid);
+            book.setImgUrl(url);
+            book.setReturnedPlaceLat(returnedPlaceLatLng.latitude);
+            book.setReturnedPlaceLong(returnedPlaceLatLng.longitude);
+            System.out.println("imgurl inside adding :\n" + url);
+            addBook(book);
+        }else{
+            Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
