@@ -64,15 +64,24 @@ public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategory
             @Override
             public void onClick(View v) {
                 bookDBService.deleteBook(books.get(i));
+                books.remove(i);
+
                 notifyItemRemoved(i);
+                notifyItemRangeChanged(i, books.size());
 
             }
         });
     }
 
+
     @Override
     public int getItemCount() {
         return books.size();
+    }
+    public void filterList(ArrayList<Book> filteredBooks)
+    {
+        books=filteredBooks;
+        notifyDataSetChanged();
     }
 
     public class BooksCategoryViewHolder extends RecyclerView.ViewHolder {
@@ -91,4 +100,5 @@ public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategory
             }
         }
     }
+
 }

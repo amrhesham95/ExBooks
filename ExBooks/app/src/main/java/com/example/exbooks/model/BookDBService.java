@@ -118,8 +118,10 @@ public class BookDBService {
 
 
     public void deleteBook(Book book) {
-       String key= myRef.child(book.getCategory()).push().getKey();
-        myRef.child(book.getCategory()).child(key).removeValue();
+
+
+       myRef.child(book.getCategory()).child(book.getBookID()).removeValue();
+
     }
 
 }
