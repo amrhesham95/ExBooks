@@ -6,6 +6,8 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.example.exbooks.R;
@@ -22,17 +24,28 @@ public class LoginScreen extends AppCompatActivity implements LoginContract.logi
     TextInputEditText emailTF;
     TextInputEditText passwordTF;
     LoginContract.loginPresenterInterface loginPresenterInterface;
+    Animation fromBottom;
+    Animation fromTop;
     private static final int RC_SIGN_IN = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Context context;
+        fromBottom=AnimationUtils.loadAnimation(this,R.anim.frombottom);
+        fromBottom.setDuration(2000);
+        fromTop=AnimationUtils.loadAnimation(this,R.anim.fromtop);
+        fromTop.setDuration(1000);
         emailTF=findViewById(R.id.loginEmailTFID);
         passwordTF=findViewById(R.id.loginPasswordTFID);
         gmailSigninButton = findViewById(R.id.gmailLoginBtn);
         signUpButton=findViewById(R.id.signupBtnID);
         normalSigninButton=findViewById(R.id.normalLoginBtn);
+        normalSigninButton.setAnimation(fromBottom);
+        gmailSigninButton.setAnimation(fromBottom);
+        emailTF.setAnimation(fromTop);
+        passwordTF.setAnimation(fromTop);
         loginPresenterInterface = new LoginPresenterImpl(this);
         loginPresenterInterface.checkCurrentUser();
         normalSigninButton.setOnClickListener((event)->{

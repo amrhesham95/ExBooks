@@ -3,6 +3,7 @@ package com.example.exbooks.Screens.chatHistoryScreen;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,11 +35,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int position) {
         userViewHolder.usernameonChatsHistory.setText(allUsers.get(position).toString());
-        userViewHolder.usernameonChatsHistory.setOnClickListener((event)->{
+        userViewHolder.cardView.setOnClickListener((event)->{
             Intent intent=new Intent(context, MessageActivity.class);
             intent.putExtra("userID",((User)(allUsers.get(position))).getUserUID());
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
+        });
+        userViewHolder.usernameonChatsHistory.setOnClickListener((event)->{
+
         });
 
     }
@@ -50,9 +54,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
         TextView usernameonChatsHistory;
+        CardView cardView;
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             usernameonChatsHistory=(TextView)itemView.findViewById(R.id.usernameonChatsHistory);
+            cardView=itemView.findViewById(R.id.cardView);
         }
     }
 }

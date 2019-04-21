@@ -5,4 +5,5 @@
     <color name="colorAccent">#DE987B</color>
     <color name="colorFocused">	#DE987B</color>
     <color name="colorHighlith">#fff6e4</color>
+    <color name="colorSecondary">#45B39C</color>
 </resources>

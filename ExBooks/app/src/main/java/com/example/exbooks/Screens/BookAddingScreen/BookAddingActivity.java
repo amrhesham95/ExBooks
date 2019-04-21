@@ -99,7 +99,8 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         FloatingActionButton uploadGall = findViewById(R.id.uploadImgBtn);
         uploadGall.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 uploadPhoto();
             }
         });
@@ -148,6 +149,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             //    placeTextView.setText(place.toString());
                 returnedPlaceLatLng=place.getLatLng();
                 returnedPlaceName=place.getName();
+
             }
 
             @Override

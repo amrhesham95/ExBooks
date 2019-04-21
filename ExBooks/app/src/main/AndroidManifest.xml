@@ -24,6 +24,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity
+            android:name=".Screens.myBooksScreen.MyBooksActivity"
+            android:label="@string/title_activity_my_books"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,6 +45,7 @@
         <activity
             android:name=".Screens.bookDetailesScreen.MapActivity"
             android:label="@string/title_activity_map"></activity>
+
         <activity android:name=".Screens.chatHistoryScreen.ChatsActivity" />
         <activity
             android:name=".Screens.ChatScreen.MessageActivity"
