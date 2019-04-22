@@ -21,7 +21,8 @@ public class HomePresenterImp implements HomeContract.HomePresenterInterface {
     public void signOut() {
         loginAuth.signOut();
         Intent intent = new Intent(this.getContext(), LoginScreen.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         this.getContext().startActivity(intent);
     }
 
