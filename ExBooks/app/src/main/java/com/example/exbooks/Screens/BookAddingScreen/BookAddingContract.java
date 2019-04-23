@@ -4,10 +4,20 @@ import android.graphics.Bitmap;
 
 import com.example.exbooks.Presenter;
 import com.example.exbooks.model.Book;
+import com.google.android.gms.maps.model.LatLng;
 
 public interface BookAddingContract {
     interface  BookAddingView{
-        public void setBook(String url);
+        String getBookTitle();
+
+        String getDescription();
+
+        String getCategory();
+
+        LatLng getReturnedPlaceLatLng();
+
+        String getReturnedPlaceName();
+
     }
 
     interface  BookAddingPresenter extends Presenter {

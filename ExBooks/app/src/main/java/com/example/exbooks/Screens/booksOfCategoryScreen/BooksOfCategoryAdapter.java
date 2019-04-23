@@ -8,22 +8,30 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.exbooks.R;
 import com.example.exbooks.Screens.bookDetailesScreen.BookDetailesActivity;
 import com.example.exbooks.model.Book;
+import com.example.exbooks.model.BookDBService;
 
 import java.util.ArrayList;
 
 public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategoryAdapter.BooksCategoryViewHolder> {
     public ArrayList<Book> books;
     Context mContext;
-
-    public BooksOfCategoryAdapter(Context mContext, ArrayList<Book> books) {
+    int type;
+    BookDBService bookDBService;
+    public BooksOfCategoryAdapter(Context mContext, ArrayList<Book> books,int type) {
         this.books = books;
         this.mContext=mContext;
+        this.type=type;
+        bookDBService = new BookDBService();
+
+
+
     }
 
 
@@ -42,6 +50,7 @@ public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategory
             booksCategoryViewHolder.bookName.setText(books.get(i).getTitle());
             booksCategoryViewHolder.bookDescription.setText(books.get(i).getDescription());
         }
+
         booksCategoryViewHolder.bookName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,22 +60,45 @@ public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategory
                 activity.startActivity(intent);
             }
         });
+        booksCategoryViewHolder.deletBookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bookDBService.deleteBook(books.get(i));
+                books.remove(i);
+
+                notifyItemRemoved(i);
+                notifyItemRangeChanged(i, books.size());
+
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
         return books.size();
+    }
+    public void filterList(ArrayList<Book> filteredBooks)
+    {
+        books=filteredBooks;
+        notifyDataSetChanged();
     }
 
     public class BooksCategoryViewHolder extends RecyclerView.ViewHolder {
         ImageView bookImage;
         TextView bookName;
         TextView bookDescription;
+        Button deletBookBtn;
         public BooksCategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             bookImage=(ImageView) itemView.findViewById(R.id.book_image_oncardLayout);
             bookName=(TextView)itemView.findViewById(R.id.bookName_oncardLayout);
             bookDescription=(TextView)itemView.findViewById(R.id.book_description_onCardLayout);
+            deletBookBtn=(Button)itemView.findViewById(R.id.deleteBookBtn);
+            if(type==0){
+                deletBookBtn.setVisibility(View.GONE);
+            }
         }
     }
+
 }

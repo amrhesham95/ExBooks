@@ -95,7 +95,7 @@
             android:drawableLeft="@drawable/password_layerlist"
             android:focusedByDefault="false"
             android:hint="Password"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="88dp" />
     </android.support.design.widget.TextInputLayout>
@@ -137,7 +137,7 @@
             android:layout_height="43dp"
             android:focusedByDefault="false"
             android:hint="Phone"
-            android:inputType="phone"
+            android:inputType="phone|number"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="88dp" />
     </android.support.design.widget.TextInputLayout>

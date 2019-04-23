@@ -22,6 +22,7 @@ import com.example.exbooks.Screens.BookAddingScreen.BookAddingActivity;
 import com.example.exbooks.Screens.ChatScreen.MessageActivity;
 import com.example.exbooks.Screens.booksOfCategoryScreen.BooksOfCategoryActivity;
 import com.example.exbooks.Screens.chatHistoryScreen.ChatsActivity;
+import com.example.exbooks.Screens.myBooksScreen.MyBooksActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
@@ -119,7 +120,9 @@ public class HomeActivity extends AppCompatActivity
             // Handle the camera action
             Intent intent=new Intent(this, ChatsActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_myBooks) {
+            Intent intent=new Intent(this, MyBooksActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
 

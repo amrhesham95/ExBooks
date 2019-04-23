@@ -1,18 +1,17 @@
 package com.example.exbooks.Screens.BookAddingScreen;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -20,19 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.exbooks.R;
-import com.example.exbooks.model.Book;
-import com.example.exbooks.model.ImageStorageService;
-
-import java.io.File;
-import java.io.IOException;
 
 import com.example.exbooks.model.User;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.net.FetchPlaceRequest;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.libraries.places.api.Places;
@@ -96,7 +87,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             }
         });
 
-        Button uploadCam = findViewById(R.id.captureBtn);
+        FloatingActionButton uploadCam = findViewById(R.id.captureBtn);
         uploadCam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,16 +96,17 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             }
         });
 
-        Button uploadGall = findViewById(R.id.uploadImgBtn);
+        FloatingActionButton uploadGall = findViewById(R.id.uploadImgBtn);
         uploadGall.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 uploadPhoto();
             }
         });
 
 
-        Button addBtn = findViewById(R.id.addBtn);
+       FloatingActionButton addBtn = findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +116,12 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
 //                imageStorageService = new ImageStorageService(this,);
 
                 //              if(imgType == IMAGE_BITMAP){
-                    bookAddingPresenter.storeImageBitmap(image_Bitmap,title.getText().toString(),title.getText().toString());
+                    if(image_Bitmap!=null) {
+                        bookAddingPresenter.storeImageBitmap(image_Bitmap, title.getText().toString(), title.getText().toString());
+                    }else{
+//                        image_Bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.readinggg);
+                        Toast.makeText(BookAddingActivity.this, "Please upload a photo for the book", Toast.LENGTH_SHORT).show();
+                    }
 //                    imageStorageService.storeImageBitmap(image_Bitmap,book.getTitle(),book.getTitle());
 
 
@@ -148,10 +145,11 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
-                Toast.makeText(BookAddingActivity.this, place.toString(), Toast.LENGTH_SHORT).show();
-                placeTextView.setText(place.toString());
+             //   Toast.makeText(BookAddingActivity.this, place.toString(), Toast.LENGTH_SHORT).show();
+            //    placeTextView.setText(place.toString());
                 returnedPlaceLatLng=place.getLatLng();
                 returnedPlaceName=place.getName();
+
             }
 
             @Override
@@ -204,51 +202,36 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
 
         super.onActivityResult(requestCode,resultCode,data);
 
-/*
-       Places.initialize (getApplicationContext(),new String("AIzaSyAsN6Y4KcSYrJEYZKwo9dxNEIdMDVEvnZ8"));
-        // Initialize the AutocompleteSupportFragment.
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-        // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-            autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-                returnedPlace=place;
-            }
-
-            @Override
-            public void onError(Status status) {
-                // TODO: Handle the error.
-                Log.i("autoCompleteError", "An error occurred: " + status);
-            }
-        });
-*/
-
     }
 
     @Override
-    public void setBook(String url) {
+    public String getBookTitle(){
         EditText title = findViewById(R.id.titleET);
-        EditText desc  = findViewById(R.id.descET);
-        String categ = spinner.getSelectedItem().toString();
-        System.out.println("Category : "+categ);
-//
-//        User user = new User("sahar96hany@gmail.com","011216688135");
-  //
-        Book book = new Book();
-        book.setTitle(title.getText().toString());
-        book.setDescription(desc.getText().toString());
-        book.setCategory(categ);
-        book.setLocation(returnedPlaceName);
-        String userUid = bookAddingPresenter.getUser();
-        book.setUser(userUid);
-        book.setImgUrl(url);
-        book.setReturnedPlaceLat(returnedPlaceLatLng.latitude);
-        book.setReturnedPlaceLong(returnedPlaceLatLng.longitude);
-        System.out.println("imgurl inside adding :\n"+url);
-        bookAddingPresenter.addBook(book);
+        String titleText = title.getText().toString();
+        return titleText;
     }
+
+    @Override
+    public String getDescription(){
+        EditText desc  = findViewById(R.id.descET);
+        String descText = desc.getText().toString();
+        return descText;
+    }
+
+    @Override
+    public String getCategory(){
+        return spinner.getSelectedItem().toString();
+   }
+
+   @Override
+    public LatLng getReturnedPlaceLatLng(){
+        return returnedPlaceLatLng;
+    }
+
+    @Override
+    public String getReturnedPlaceName(){
+        return returnedPlaceName;
+    }
+
 
 }

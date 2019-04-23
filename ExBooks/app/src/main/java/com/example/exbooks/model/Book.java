@@ -18,6 +18,7 @@ public class Book implements Serializable {
     private String user ;
     private double returnedPlaceLat;
     private double returnedPlaceLong;
+    private String bookID;
    // FirebaseUser owner = null;
 
     public Book() {
@@ -86,7 +87,15 @@ public class Book implements Serializable {
     public void setUser(String user) {
         this.user = user;
     }
-/*    public FirebaseUser getOwner() {
+
+    public String getBookID() {
+        return bookID;
+    }
+
+    public void setBookID(String bookID) {
+        this.bookID = bookID;
+    }
+    /*    public FirebaseUser getOwner() {
         return owner;
     }
 
