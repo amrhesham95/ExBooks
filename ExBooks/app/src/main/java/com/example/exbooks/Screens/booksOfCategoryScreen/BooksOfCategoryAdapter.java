@@ -16,6 +16,7 @@ import com.example.exbooks.R;
 import com.example.exbooks.Screens.bookDetailesScreen.BookDetailesActivity;
 import com.example.exbooks.model.Book;
 import com.example.exbooks.model.BookDBService;
+import com.example.exbooks.model.ImageDownloaderService;
 
 import java.util.ArrayList;
 
@@ -49,6 +50,8 @@ public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategory
         if(books.size()>0) {
             booksCategoryViewHolder.bookName.setText(books.get(i).getTitle());
             booksCategoryViewHolder.bookDescription.setText(books.get(i).getDescription());
+            ImageDownloaderService imageDownloaderService = new ImageDownloaderService();
+            imageDownloaderService.loadWithGlide(books.get(i).getImgUrl(),mContext,booksCategoryViewHolder.bookImage);
         }
 
         booksCategoryViewHolder.bookName.setOnClickListener(new View.OnClickListener() {

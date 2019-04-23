@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,13 +34,14 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
     TextView bookLocation;
     ImageView bookImgView ;
     Book book;
-    Button chatBtn;
+    FloatingActionButton chatBtn;
     String ownerPhone ;
-    Button showMapBtn;
+    FloatingActionButton showMapBtn;
     LocationManager locationManager;
     private static final int PERM_REQ=0;
     MyLocationListener locationListener;
     public static Location myLocationGlobal;
+    Toolbar toolbar ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,16 +49,17 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         bookDetailesPresenterInterface=new BookDetailesPresenterImp(this);
         book = (Book)getIntent().getSerializableExtra("book");
         bookTitle=(TextView)findViewById(R.id.detailesBooktitle);
-        bookCategory=(TextView)findViewById(R.id.detailesBookCategory);
+//        bookCategory=(TextView)findViewById(R.id.detailesBookCategory);
         bookDescription=(TextView)findViewById(R.id.detailesBookDescription);
         bookLocation=(TextView)findViewById(R.id.detailesBookLocation);
         bookImgView = findViewById(R.id.bookImageInDetailesActivity);
+        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_bookdetails);
         chatBtn=findViewById(R.id.chat_btn);
         showMapBtn=findViewById(R.id.showMap_btn);
         setDataOfBook();
         bookDetailesPresenterInterface.getBookOwnerPhone(book.getUser());
         locationListener=new MyLocationListener();
-        Button callBtn = findViewById(R.id.call_btn);
+    /*    Button callBtn = findViewById(R.id.call_btn);
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +67,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
                 intent.setData(Uri.parse("tel:"+ownerPhone));
                 startActivity(intent);
             }
-        });
+        });*/
         chatBtn.setOnClickListener((event)->{
             Intent intent=new Intent(this, MessageActivity.class);
             intent.putExtra("userID",book.getUser());
@@ -111,9 +114,11 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         bookTitle.setText(book.getTitle());
         bookDescription.setText(book.getDescription());
         bookLocation.setText(book.getLocation());
-        bookCategory.setText(book.getCategory());
+//        bookCategory.setText(book.getCategory());
+        toolbar.setTitle(book.getCategory());
         System.out.println("bookUrl->>>   "+book.getImgUrl());
         bookDetailesPresenterInterface.getBookImg(book.getImgUrl(),bookImgView);
+
     }
 
     @Override
