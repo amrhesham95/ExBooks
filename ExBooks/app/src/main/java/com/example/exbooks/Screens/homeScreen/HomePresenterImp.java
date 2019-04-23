@@ -1,5 +1,6 @@
 package com.example.exbooks.Screens.homeScreen;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -21,7 +22,10 @@ public class HomePresenterImp implements HomeContract.HomePresenterInterface {
     public void signOut() {
         loginAuth.signOut();
         Intent intent = new Intent(this.getContext(), LoginScreen.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        //((Activity)this.getContext()).finish();
         this.getContext().startActivity(intent);
     }
 

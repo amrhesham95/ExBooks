@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.example.exbooks.R;
 import com.example.exbooks.Screens.homeScreen.HomeActivity;
+import com.example.exbooks.Screens.loginScreen.LoginScreen;
 import com.example.exbooks.model.User;
 import com.example.exbooks.model.UserDBService;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +28,9 @@ public class AfterGmailActivity extends AppCompatActivity {
             User user=new User(firebaseUser.getEmail(),phoneTF.getText().toString(),firebaseUser.getUid());
             UserDBService userDBService=new UserDBService();
             userDBService.addUser(user);
-            Intent intent =new Intent (this,HomeActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
     }

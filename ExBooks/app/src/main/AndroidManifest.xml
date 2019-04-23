@@ -61,8 +61,7 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".model.TestActivity" />
-        <activity android:name=".Screens.loginScreen.LoginScreen"
-            android:noHistory="true">
+        <activity android:name=".Screens.loginScreen.LoginScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

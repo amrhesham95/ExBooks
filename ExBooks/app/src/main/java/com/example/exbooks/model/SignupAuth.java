@@ -1,10 +1,13 @@
 package com.example.exbooks.model;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.exbooks.Screens.homeScreen.HomeActivity;
 import com.example.exbooks.Screens.loginScreen.LoginContract;
+import com.example.exbooks.Screens.loginScreen.LoginScreen;
 import com.example.exbooks.Screens.signupScreen.SignupContract;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,7 +40,10 @@ public class SignupAuth {
                             Log.i("myLog","Sign up successfully");
                             Toast.makeText(signupPresenterInterface.getContext(), "Sign up successfully", Toast.LENGTH_SHORT).show();
                             //FirebaseUser user = mAuth.getCurrentUser();
-                            ((Activity) signupPresenterInterface.getContext()).finish();
+                            Intent intent = new Intent(signupPresenterInterface.getContext(), HomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            signupPresenterInterface.getContext().startActivity(intent);
 
                             //updateUI(user);
                         } else {
