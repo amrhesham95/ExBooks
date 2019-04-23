@@ -38,7 +38,9 @@ public class LoginAuth {
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Intent intent=new Intent(loginPresenterInterface.getContext(), HomeActivity.class);
+                            Intent intent = new Intent(loginPresenterInterface.getContext(), HomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             loginPresenterInterface.getContext().startActivity(intent);
 //                                FirebaseUser user = mAuth.getCurrentUser();
 //                                updateUI(user);
