@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -54,7 +55,6 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_adding);
-        placeTextView=findViewById(R.id.placeTVID);
         bookAddingPresenter = new BookAddingPresenterImpl(this);
 
         imageView = findViewById(R.id.bookImageView);
@@ -105,7 +105,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         });
 */
 
-       FloatingActionButton addBtn = findViewById(R.id.addBtn);
+       Button addBtn = findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
