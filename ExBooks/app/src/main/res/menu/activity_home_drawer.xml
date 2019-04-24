@@ -13,16 +13,12 @@
             android:icon="@drawable/ic_bookskter"
             android:title="My Books" />
 
+        <item
+            android:id="@+id/nav_logOut"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="sign out" />
+
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-
-            <item
-                android:id="@+id/nav_logOut"
-                android:icon="@drawable/ic_exit_to_app_black_24dp"
-                android:title="LogOut" />
-        </menu>
-    </item>
 
 </menu>

@@ -28,7 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 public class BookDetailesActivity extends AppCompatActivity implements BookDetailesContract.BookDetailesViewInterface {
     BookDetailesContract.BookDetailesPresenterInterface bookDetailesPresenterInterface;
     ImageView bookImage;
-    TextView bookTitle;
+    //TextView bookTitle;
     TextView bookCategory;
     TextView bookDescription;
     TextView bookLocation;
@@ -48,7 +48,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         setContentView(R.layout.activity_book_detailes);
         bookDetailesPresenterInterface=new BookDetailesPresenterImp(this);
         book = (Book)getIntent().getSerializableExtra("book");
-        bookTitle=(TextView)findViewById(R.id.detailesBooktitle);
+        bookCategory=(TextView)findViewById(R.id.detailesBookCategory);
 //        bookCategory=(TextView)findViewById(R.id.detailesBookCategory);
         bookDescription=(TextView)findViewById(R.id.detailesBookDescription);
         bookLocation=(TextView)findViewById(R.id.detailesBookLocation);
@@ -111,11 +111,11 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
     }
 
     private void setDataOfBook() {
-        bookTitle.setText(book.getTitle());
+        bookCategory.setText(book.getCategory());
         bookDescription.setText(book.getDescription());
         bookLocation.setText(book.getLocation());
 //        bookCategory.setText(book.getCategory());
-        toolbar.setTitle(book.getCategory());
+        toolbar.setTitle(book.getTitle());
         System.out.println("bookUrl->>>   "+book.getImgUrl());
         bookDetailesPresenterInterface.getBookImg(book.getImgUrl(),bookImgView);
 
