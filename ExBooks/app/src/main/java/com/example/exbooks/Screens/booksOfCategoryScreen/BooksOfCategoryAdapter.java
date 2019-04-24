@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,11 +58,15 @@ public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategory
         booksCategoryViewHolder.bookName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Activity activity=(Activity)mContext;
-                Intent intent = new Intent(activity, BookDetailesActivity.class);
-                intent.putExtra("book",books.get(i));
-                activity.startActivity(intent);
+
             }
+        });
+        booksCategoryViewHolder.booksOfCatCard.setOnClickListener(event->
+        {
+            Activity activity=(Activity)mContext;
+            Intent intent = new Intent(activity, BookDetailesActivity.class);
+            intent.putExtra("book",books.get(i));
+            activity.startActivity(intent);
         });
         booksCategoryViewHolder.deletBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,12 +97,14 @@ public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategory
         TextView bookName;
         TextView bookDescription;
         Button deletBookBtn;
+        CardView booksOfCatCard;
         public BooksCategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             bookImage=(ImageView) itemView.findViewById(R.id.book_image_oncardLayout);
             bookName=(TextView)itemView.findViewById(R.id.bookName_oncardLayout);
             bookDescription=(TextView)itemView.findViewById(R.id.book_description_onCardLayout);
             deletBookBtn=(Button)itemView.findViewById(R.id.deleteBookBtn);
+            booksOfCatCard=(CardView)itemView.findViewById(R.id.book_card);
             if(type==0){
                 deletBookBtn.setVisibility(View.GONE);
             }
