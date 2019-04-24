@@ -6,6 +6,8 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -48,8 +50,29 @@ public class LoginScreen extends AppCompatActivity implements LoginContract.logi
         passwordTF.setAnimation(fromTop);
         loginPresenterInterface = new LoginPresenterImpl(this);
         loginPresenterInterface.checkCurrentUser();
+
+        normalSigninButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                normalSigninButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            }
+        });
+        normalSigninButton.setOnHoverListener(new View.OnHoverListener() {
+            @Override
+            public boolean onHover(View v, MotionEvent event) {
+
+                return false;
+            }
+        });
         normalSigninButton.setOnClickListener((event)->{
             loginPresenterInterface.normalLogin(emailTF.getText().toString(),passwordTF.getText().toString());
+        });
+        gmailSigninButton.setOnHoverListener(new View.OnHoverListener() {
+            @Override
+            public boolean onHover(View v, MotionEvent event) {
+                gmailSigninButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                return false;
+            }
         });
         gmailSigninButton.setOnClickListener((event)->{
             Intent signInIntent = loginPresenterInterface.getSignInIntent();

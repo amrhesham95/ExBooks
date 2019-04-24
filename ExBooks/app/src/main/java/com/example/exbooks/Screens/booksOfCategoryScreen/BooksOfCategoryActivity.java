@@ -31,7 +31,7 @@ public class BooksOfCategoryActivity extends AppCompatActivity implements BooksO
         categoryBooksRecyleView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         categoryBooksRecyleView.setLayoutManager(layoutManager);
-        allBook=new ArrayList<>();
+        //allBook=new ArrayList<>();
         //categoryBooksAdapter = new BooksOfCategoryAdapter(this,allBook,0);
         //categoryBooksRecyleView.setAdapter(categoryBooksAdapter);
         String categoryName=getIntent().getStringExtra("categoryName");

@@ -4,41 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/loginbackground"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".Screens.loginScreen.LoginScreen"
-    android:background="@drawable/loginbackground">
+    tools:context=".Screens.loginScreen.LoginScreen">
 
     <Button
         android:id="@+id/gmailLoginBtn"
         android:layout_width="235dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="72dp"
         android:background="@drawable/new_btn"
         android:focusedByDefault="true"
         android:text="login with gmail"
-        android:textColor="@color/colorFocused"
+        android:textColor="@drawable/text_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/normalLoginBtn" />
+        app:layout_constraintEnd_toEndOf="@+id/normalLoginBtn"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/normalLoginBtn"
+        app:layout_constraintTop_toBottomOf="@+id/normalLoginBtn"
+        app:layout_constraintVertical_bias="0.455" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="395dp"
+        android:layout_height="62dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="bottom"
+        android:paddingTop="0dp"
+        android:clipToPadding="false"
         android:focusedByDefault="false"
-        app:layout_constraintBottom_toTopOf="@+id/loginPasswordTFID"
+        android:theme="@style/TextLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
         >
 
         <android.support.design.widget.TextInputEditText
@@ -46,12 +50,12 @@
             android:layout_width="match_parent"
             android:layout_height="41dp"
             android:background="@drawable/edittext_background"
-            android:textColor="@color/colorFocused"
+            android:drawableLeft="@drawable/username_layerlist"
 
             android:focusedByDefault="false"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:drawableLeft="@drawable/username_layerlist"/>
+            android:textColor="@color/colorFocused" />
 
 
     </android.support.design.widget.TextInputLayout>
@@ -59,60 +63,61 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/passwordInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="69dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="bottom"
+        android:paddingTop="0dp"
+        android:clipToPadding="false"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:focusedByDefault="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/loginPasswordTFID"
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/edittext_background"
-        android:textColor="@color/colorFocused"
-        android:focusedByDefault="false"
-        android:hint="password"
-        android:inputType="textPassword"
+        android:theme="@style/TextLabel"
+        app:hintTextAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
         app:layout_constraintBottom_toTopOf="@+id/normalLoginBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        android:drawableLeft="@drawable/password_layerlist"/>
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/loginPasswordTFID"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/edittext_background"
+
+            android:drawableLeft="@drawable/password_layerlist"
+            android:focusedByDefault="false"
+            android:hint="password"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/normalLoginBtn"
         android:layout_width="240dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="49dp"
+        android:layout_height="47dp"
+
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/new_btn"
-        android:textColor="@color/colorFocused"
         android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/gmailLoginBtn"
-        app:layout_constraintEnd_toEndOf="@+id/gmailLoginBtn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/gmailLoginBtn"
-        app:layout_constraintTop_toBottomOf="@+id/loginPasswordTFID" />
+        android:textColor="@drawable/text_color"
+        app:layout_constraintEnd_toEndOf="@+id/passwordInputLayout"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/passwordInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
 
     <Button
         android:id="@+id/signupBtnID"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
         android:background="#00000000"
         android:text="Don't you have an account ?"
+        android:textColor="@color/colorFocused"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gmailLoginBtn"
-        app:layout_constraintVertical_bias="0.48"
-        android:textColor="@color/colorFocused"/>
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

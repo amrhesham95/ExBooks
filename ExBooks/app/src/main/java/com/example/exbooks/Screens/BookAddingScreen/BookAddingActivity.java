@@ -56,7 +56,8 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         setContentView(R.layout.activity_book_adding);
         placeTextView=findViewById(R.id.placeTVID);
         bookAddingPresenter = new BookAddingPresenterImpl(this);
-        imageView = findViewById(R.id.imageView);
+        //imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.bookImageView);
         spinner = findViewById(R.id.categSpinner);
         //hna ha7ot el user ele h5do mn el intent
 

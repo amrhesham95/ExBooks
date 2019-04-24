@@ -1,7 +1,10 @@
 package com.example.exbooks.Screens.homeScreen;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,12 +36,25 @@ public class HomeActivity extends AppCompatActivity
     private RecyclerView categoriesRecyleView;
     private RecyclerView.Adapter categoryAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private CollapsingToolbarLayout mCollapsingToolbarLayout;
+    private Toolbar mToolbar;
     TextView navigationViewHeader;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        mCollapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.collapsing);
+        mToolbar=(Toolbar)findViewById(R.id.toolbar);
+        mCollapsingToolbarLayout.setTitleEnabled(true);
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
+        mToolbar.setTitle("Ex-Books");
+        mCollapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.colorHighlith));
+        mCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.colorHighlith));
+
         homePresenterInterface = new HomePresenterImp(this);
         categoriesRecyleView = (RecyclerView) findViewById(R.id.categoriesRecyleView);
         categoriesRecyleView.setHasFixedSize(true);
@@ -76,6 +92,7 @@ public class HomeActivity extends AppCompatActivity
         View view = navigationView.getHeaderView(0);
         navigationViewHeader=view.findViewById(R.id.navigationViewHeader);
         navigationViewHeader.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        navigationView.setItemIconTintList(null);
 
     }
 
@@ -104,9 +121,9 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -123,12 +140,6 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_myBooks) {
             Intent intent=new Intent(this, MyBooksActivity.class);
             startActivity(intent);
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_logOut) {
             homePresenterInterface.signOut();

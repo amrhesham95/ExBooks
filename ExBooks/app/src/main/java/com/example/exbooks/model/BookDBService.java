@@ -63,8 +63,10 @@ public class BookDBService {
             for(DataSnapshot data:dataSnapshot.getChildren()){
                 books.add(data.getValue(Book.class));
             }
-            booksOfCategoryPresenterInterface.setCategoryBooks(books);
-            booksOfCategoryPresenterInterface.notifyChange();
+            if(books.size()>0) {
+                booksOfCategoryPresenterInterface.setCategoryBooks(books);
+                booksOfCategoryPresenterInterface.notifyChange();
+            }
         }
 
         @Override

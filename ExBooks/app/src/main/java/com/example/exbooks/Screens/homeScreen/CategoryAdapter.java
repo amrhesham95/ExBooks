@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,7 +49,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     categoryViewHolder.categoryName.setText(categoryList.get(i).getCategoryName());
     categoryViewHolder.categoryIcon.setImageResource(categoryList.get(i).getCategoryIcon());
 
-    categoryViewHolder.categoryName.setOnClickListener(new View.OnClickListener() {
+    categoryViewHolder.goToCategoryBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Activity activity=(Activity)context;
@@ -68,11 +69,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public class CategoryViewHolder extends RecyclerView.ViewHolder {
         ImageView categoryIcon;
         TextView categoryName;
+        ImageButton goToCategoryBtn;
         public CategoryViewHolder( View itemView) {
             super(itemView);
             categoryIcon=(ImageView) itemView.findViewById(R.id.category_image);
             categoryName=(TextView)itemView.findViewById(R.id.categoryName);
-
+            goToCategoryBtn=itemView.findViewById(R.id.goToCategoryBtn);
         }
     }
 }
