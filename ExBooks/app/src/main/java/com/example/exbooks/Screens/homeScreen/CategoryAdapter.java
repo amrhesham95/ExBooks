@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,16 +50,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     categoryViewHolder.categoryName.setText(categoryList.get(i).getCategoryName());
     categoryViewHolder.categoryIcon.setImageResource(categoryList.get(i).getCategoryIcon());
 
-    categoryViewHolder.goToCategoryBtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Activity activity=(Activity)context;
-            Intent intent = new Intent(activity, BooksOfCategoryActivity.class);
-            intent.putExtra("categoryName",categoryList.get(i).getCategoryName());
-            activity.startActivity(intent);
 
-        }
+    categoryViewHolder.cardView.setOnClickListener((event)->{
+        Activity activity=(Activity)context;
+        Intent intent = new Intent(activity, BooksOfCategoryActivity.class);
+        intent.putExtra("categoryName",categoryList.get(i).getCategoryName());
+        activity.startActivity(intent);
+
     });
+
     }
 
     @Override
@@ -69,9 +69,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public class CategoryViewHolder extends RecyclerView.ViewHolder {
         ImageView categoryIcon;
         TextView categoryName;
+
         ImageButton goToCategoryBtn;
+
+        CardView cardView;
+
         public CategoryViewHolder( View itemView) {
             super(itemView);
+            cardView=itemView.findViewById(R.id.categoryCardView);
             categoryIcon=(ImageView) itemView.findViewById(R.id.category_image);
             categoryName=(TextView)itemView.findViewById(R.id.categoryName);
             goToCategoryBtn=itemView.findViewById(R.id.goToCategoryBtn);

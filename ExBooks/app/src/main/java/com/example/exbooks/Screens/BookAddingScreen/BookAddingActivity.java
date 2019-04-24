@@ -56,11 +56,9 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         setContentView(R.layout.activity_book_adding);
         placeTextView=findViewById(R.id.placeTVID);
         bookAddingPresenter = new BookAddingPresenterImpl(this);
-        //imageView = findViewById(R.id.imageView);
+
         imageView = findViewById(R.id.bookImageView);
         spinner = findViewById(R.id.categSpinner);
-        //hna ha7ot el user ele h5do mn el intent
-
         List<String> categories = new ArrayList<String>();
         categories.add("History");
         categories.add("Kids");
@@ -97,7 +95,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             }
         });
 
-        FloatingActionButton uploadGall = findViewById(R.id.uploadImgBtn);
+     /*   FloatingActionButton uploadGall = findViewById(R.id.uploadImgBtn);
         uploadGall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -105,7 +103,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
                 uploadPhoto();
             }
         });
-
+*/
 
        FloatingActionButton addBtn = findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
