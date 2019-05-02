@@ -26,9 +26,9 @@ public class MyBooksActivity extends AppCompatActivity implements MyBooksContrac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_books);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.mybooktoolbar);
+        toolbar.setTitle("My books");
         setSupportActionBar(toolbar);
-        toolbar.setTitle("hello");
         myBooksPresenterInerface= new MyBooksPresenterImp(this);
         myBooksRecyleView=(RecyclerView)findViewById(R.id.category_books_recycleView);
         myBooksRecyleView.setHasFixedSize(true);
