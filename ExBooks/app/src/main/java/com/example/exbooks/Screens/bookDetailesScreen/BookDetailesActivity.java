@@ -128,7 +128,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
     private class MyLocationListener implements LocationListener {
         @Override
         public void onLocationChanged(Location location) {
-            Toast.makeText(getApplicationContext(), "Longitude:"+location.getLongitude()+"\n"+"latitude:"+location.getLatitude(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Longitude:"+location.getLongitude()+"\n"+"latitude:"+location.getLatitude(), Toast.LENGTH_SHORT).show();
             myLocationGlobal=location;
 
             locationManager.removeUpdates(locationListener);

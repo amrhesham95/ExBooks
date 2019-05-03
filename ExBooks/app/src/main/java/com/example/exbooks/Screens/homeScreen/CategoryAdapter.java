@@ -27,27 +27,27 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public CategoryAdapter(Context mContext) {
         context=mContext;
         categoryList =new ArrayList<Category>();
-        categoryList.add(new Category("Arts&Music",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Biographies",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Business",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Comics",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Computer&Technology",R.drawable.ic_video));
-        categoryList.add(new Category("Cooking",R.drawable.ic_cookingcolor));
-        categoryList.add(new Category("Education&Reference",R.drawable.ic_classroom_color));
-        categoryList.add(new Category("Entertainment",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Health&Fitness",R.drawable.ic_health));
-        categoryList.add(new Category("Kids",R.drawable.ic_kidsimg));
-        categoryList.add(new Category("History",R.drawable.ic_pyramids));
-        categoryList.add(new Category("Hobbies&Crafts",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Horror",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Literature&Fiction",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Medical",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Mysteries",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Romance",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Sci-Fi&Fantasy",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Science&Math",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Sports",R.drawable.ic_entertinment));
-        categoryList.add(new Category("Travel",R.drawable.ic_entertinment));
+        categoryList.add(new Category("Arts&Music",R.drawable.ic_arts));
+        categoryList.add(new Category("Biographies",R.drawable.ic_biography));
+        categoryList.add(new Category("Business",R.drawable.ic_business));
+        categoryList.add(new Category("Comics",R.drawable.ic_comic));
+        categoryList.add(new Category("Computer&Technology",R.drawable.ic_computer));
+        categoryList.add(new Category("Cooking",R.drawable.ic_cooking));
+        categoryList.add(new Category("Education&Reference",R.drawable.ic_education));
+        categoryList.add(new Category("Entertainment",R.drawable.ic_entertainment));
+        categoryList.add(new Category("Health&Fitness",R.drawable.ic_healthh));
+        categoryList.add(new Category("History",R.drawable.ic_history));
+        categoryList.add(new Category("Hobbies&Crafts",R.drawable.ic_craft));
+        categoryList.add(new Category("Horror",R.drawable.ic_horror));
+        categoryList.add(new Category("Kids",R.drawable.ic_kids));
+        categoryList.add(new Category("Literature&Fiction",R.drawable.ic_litrature));
+        categoryList.add(new Category("Medical",R.drawable.ic_medicine));
+        categoryList.add(new Category("Mysteries",R.drawable.ic_mystery));
+        categoryList.add(new Category("Romance",R.drawable.ic_romance));
+        categoryList.add(new Category("Sci-Fi&Fantasy",R.drawable.ic_sci_fi));
+        categoryList.add(new Category("Science&Math",R.drawable.ic_science));
+        categoryList.add(new Category("Sports",R.drawable.ic_sports));
+        categoryList.add(new Category("Travel",R.drawable.ic_travel));
 
 
     }

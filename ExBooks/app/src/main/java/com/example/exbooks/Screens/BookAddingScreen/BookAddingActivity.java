@@ -70,11 +70,11 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         categories.add("Education&Reference");
         categories.add("Entertainment");
         categories.add("Health&Fitness");
-        categories.add("Kids");
         categories.add("History");
         categories.add("Hobbies&Crafts");
         categories.add("Horror");
-        categories.add("Literature&Fiction");
+        categories.add("Kids");
+        categories.add("Literature");
         categories.add("Medical");
         categories.add("Mysteries");
         categories.add("Romance");
