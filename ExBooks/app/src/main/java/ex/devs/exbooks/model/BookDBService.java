@@ -5,12 +5,17 @@ import android.util.Log;
 
 import ex.devs.exbooks.Screens.booksOfCategoryScreen.BooksOfCategoryContract;
 import ex.devs.exbooks.Screens.myBooksScreen.MyBooksContract;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -22,8 +27,13 @@ public class BookDBService {
     DatabaseReference myRef ;
     BooksOfCategoryContract.BooksOfCategoryPresenterInterface booksOfCategoryPresenterInterface;
     MyBooksContract.MyBooksPresenterInerface myBooksPresenterInerface;
+    FirebaseStorage storage ;
+    StorageReference storageReference ;
+
     public BookDBService() {
         myRef = database.getReference("books");
+        storage = FirebaseStorage.getInstance();
+     //   storageReference = storage.getReference("books");
 
     }
 
@@ -121,7 +131,20 @@ public class BookDBService {
 
 
        myRef.child(book.getCategory()).child(book.getBookID()).removeValue();
-
+       System.out.println("booktitle: " +book.getTitle());
+        storageReference = storage.getReference("books/"+book.getTitle()+"/"+book.getTitle());
+   //    storageReference = storageReference.child(book.getTitle());
+        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                System.out.println("deleted successfully");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println("deletion failed");
+            }
+        });
     }
 
 }
