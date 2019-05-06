@@ -22,5 +22,7 @@
 
     <string name="show_on_map">Show on map</string>
     <string name="title_activity_map">Map</string>
+    <string name="topic">firstTopic</string>
+    <string name="topicFailed">firstTopicHasFailed</string>
 
 </resources>
