@@ -1,0 +1,23 @@
+package ex.devs.exbooks.Screens.booksOfCategoryScreen;
+
+import ex.devs.exbooks.model.Book;
+
+import java.util.ArrayList;
+
+public interface BooksOfCategoryContract {
+    interface BooksOfCategoryViewInterface
+    {
+       void setCategoryBookstoView(ArrayList<Book> books);
+       void clearAdapter();
+       void notifyChange();
+    }
+    interface BooksOfCategoryPresenterInterface
+    {
+
+        void setCategoryBooks(ArrayList<Book> books);
+        void clearAdapter();
+        void notifyChange();
+
+        void setCategoryName(String categoryName);
+    }
+}

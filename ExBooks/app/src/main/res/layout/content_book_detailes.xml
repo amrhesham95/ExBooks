@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:fillViewport="true"
-    tools:context=".Screens.bookDetailesScreen.BookDetailesActivity"
+    tools:context="ex.devs.exbooks.Screens.bookDetailesScreen.BookDetailesActivity"
     tools:showIn="@layout/activity_book_detailes"
     android:background="@color/colorHighlith"
     >

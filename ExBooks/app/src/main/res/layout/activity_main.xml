@@ -7,7 +7,7 @@
     android:background="@drawable/loginbackground"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".Screens.loginScreen.LoginScreen">
+    tools:context="ex.devs.exbooks.Screens.loginScreen.LoginScreen">
 
     <Button
         android:id="@+id/gmailLoginBtn"

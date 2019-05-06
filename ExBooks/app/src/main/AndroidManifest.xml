@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.exbooks">
+    package="ex.devs.exbooks"
+    android:versionCode="4">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -18,14 +19,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/exbooksicon"
+        android:icon="@drawable/book"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".Screens.myBooksScreen.MyBooksActivity"
+            android:name="ex.devs.exbooks.Screens.myBooksScreen.MyBooksActivity"
             android:label="@string/title_activity_my_books"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"></activity>
@@ -44,28 +45,28 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Screens.bookDetailesScreen.MapActivity"
+            android:name="ex.devs.exbooks.Screens.bookDetailesScreen.MapActivity"
             android:label="@string/title_activity_map"
             android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".Screens.chatHistoryScreen.ChatsActivity"
+        <activity android:name="ex.devs.exbooks.Screens.chatHistoryScreen.ChatsActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Screens.ChatScreen.MessageActivity"
+            android:name="ex.devs.exbooks.Screens.ChatScreen.MessageActivity"
             android:label="@string/title_activity_message"
             android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
-        <activity android:name=".Screens.bookDetailesScreen.BookDetailesActivity"
+        <activity android:name="ex.devs.exbooks.Screens.bookDetailesScreen.BookDetailesActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Screens.booksOfCategoryScreen.BooksOfCategoryActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".Screens.AfterGmailActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".Screens.signupScreen.SignupScreen" android:screenOrientation="portrait"/>
-        <activity android:name=".Screens.BookAddingScreen.BookAddingActivity" android:screenOrientation="portrait"/>
+        <activity android:name="ex.devs.exbooks.Screens.booksOfCategoryScreen.BooksOfCategoryActivity" android:screenOrientation="portrait"/>
+        <activity android:name="ex.devs.exbooks.Screens.AfterGmailActivity" android:screenOrientation="portrait"/>
+        <activity android:name="ex.devs.exbooks.Screens.signupScreen.SignupScreen" android:screenOrientation="portrait"/>
+        <activity android:name="ex.devs.exbooks.Screens.BookAddingScreen.BookAddingActivity" android:screenOrientation="portrait"/>
         <activity
-            android:name=".Screens.homeScreen.HomeActivity"
+            android:name="ex.devs.exbooks.Screens.homeScreen.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
-        <activity android:name=".model.TestActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".Screens.loginScreen.LoginScreen" android:screenOrientation="portrait">
+        <activity android:name="ex.devs.exbooks.model.TestActivity" android:screenOrientation="portrait"/>
+        <activity android:name="ex.devs.exbooks.Screens.loginScreen.LoginScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
