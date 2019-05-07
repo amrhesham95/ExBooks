@@ -55,7 +55,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_adding);
         bookAddingPresenter = new BookAddingPresenterImpl(this);
-
+        returnedPlaceName = "";
         imageView = findViewById(R.id.bookImageView);
         spinner = findViewById(R.id.categSpinner);
         List<String> categories = new ArrayList<String>();
@@ -123,29 +123,29 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             @Override
             public void onClick(View v) {
                 EditText title = findViewById(R.id.titleET);
-
-//                System.out.println(returnedPlace.getAddress());
-//                imageStorageService = new ImageStorageService(this,);
-
-                //              if(imgType == IMAGE_BITMAP){
-                    if(image_Bitmap!=null) {
+                boolean check = getBookTitle().isEmpty() || getCategory().isEmpty() || getDescription().isEmpty() || returnedPlaceName.isEmpty() ;
+                if(!check) {
+                    if (image_Bitmap != null) {
+                        System.out.println("img not null");
                         bookAddingPresenter.storeImageBitmap(image_Bitmap, title.getText().toString(), title.getText().toString());
-                    }else{
-//                        image_Bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.readinggg);
+                        Toast.makeText(BookAddingActivity.this, "Book is added Successfully", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        System.out.println("img is null");
+
                         Toast.makeText(BookAddingActivity.this, "Please upload a photo for the book", Toast.LENGTH_SHORT).show();
                     }
-//                    imageStorageService.storeImageBitmap(image_Bitmap,book.getTitle(),book.getTitle());
+                }else{
+                    System.out.println("here");
 
-
-
-/*                }else if(imgType == IMAGE_URI){
+                    Toast.makeText(BookAddingActivity.this, "Please fill in all Fields ", Toast.LENGTH_SHORT).show();
 
                 }
-*/
-                Toast.makeText(BookAddingActivity.this, "Book is added Successfully", Toast.LENGTH_SHORT).show();
                 finish();
+
             }
         });
+
 
         Places.initialize (getApplicationContext(),new String("AIzaSyAsN6Y4KcSYrJEYZKwo9dxNEIdMDVEvnZ8"));
         // Initialize the AutocompleteSupportFragment.
