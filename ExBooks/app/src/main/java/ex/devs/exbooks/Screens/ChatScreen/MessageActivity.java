@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -180,7 +181,8 @@ public class MessageActivity extends AppCompatActivity {
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                                     if (response.code() == 200){
                                         if (response.body().success != 1){
-                                            Toast.makeText(MessageActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                                           // Toast.makeText(MessageActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                                            Log.i("errorMsg","Failed!");
                                         }
                                     }
                                 }

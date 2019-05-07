@@ -59,7 +59,7 @@ public class HomeActivity extends AppCompatActivity
                             msg = getString(R.string.topicFailed);
                         }
                         Log.d(TOPIC_TAG, msg);
-                        Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
 
