@@ -3,10 +3,8 @@ package ex.devs.exbooks.Screens.bookDetailesScreen;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,14 +13,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
+
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -35,7 +31,6 @@ import ex.devs.exbooks.model.Book;
 public class BookDetailesActivity extends AppCompatActivity implements BookDetailesContract.BookDetailesViewInterface {
     BookDetailesContract.BookDetailesPresenterInterface bookDetailesPresenterInterface;
     ImageView bookImage;
-    //TextView bookTitle;
     TextView bookCategory;
     TextView bookDescription;
     TextView bookLocation;
@@ -100,44 +95,28 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         bookImgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Dialog settingsDialog = new Dialog(BookDetailesActivity.this);
-                settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                settingsDialog.setContentView(getLayoutInflater().inflate(R.layout.image_layout
+               Dialog dialog = new Dialog(BookDetailesActivity.this);
+                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(getLayoutInflater().inflate(R.layout.image_layout
                         , null));
 
 
-                //View imageLayoutView = getLayoutInflater().inflate(R.layout.image_layout
-                       // , null);
-                bookImgInDialougView=settingsDialog.findViewById(R.id.bookImageInDetailesDialog);
+
+                bookImgInDialougView=dialog.findViewById(R.id.bookImageInDetailesDialog);
                 bookDetailesPresenterInterface.getBookImg(book.getImgUrl(),bookImgInDialougView);
 
 
-                settingsDialog.show();
-
-               /* Dialog builder = new Dialog(BookDetailesActivity.this,android.R.style.Theme_Light);
-
-                builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                builder.getWindow().setBackgroundDrawable(
-                        new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        //nothing;
-                    }
-                });
-
+                dialog.show();
                 DisplayMetrics metrics = getResources().getDisplayMetrics();
                 int width = metrics.widthPixels;
                 int height = metrics.heightPixels;
-
-                ImageView imageView = new ImageView(BookDetailesActivity.this);
-                bookDetailesPresenterInterface.getBookImg(book.getImgUrl(),imageView);
-                builder.addContentView(imageView, new RelativeLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT));
+                dialog.getWindow().setLayout((6 * width)/7, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
 
-                        builder.show();*/
+
+                dialog.getWindow().setLayout((6*width)/7,(4*height)/5);
+
+
             }
         });
 
