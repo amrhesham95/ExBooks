@@ -64,7 +64,13 @@
         <activity
             android:name="ex.devs.exbooks.Screens.homeScreen.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
         <activity android:name="ex.devs.exbooks.model.TestActivity" android:screenOrientation="portrait"/>
         <activity android:name="ex.devs.exbooks.Screens.loginScreen.LoginScreen" android:screenOrientation="portrait">
             <intent-filter>
