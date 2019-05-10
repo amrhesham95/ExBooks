@@ -27,6 +27,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public CategoryAdapter(Context mContext) {
         context=mContext;
         categoryList =new ArrayList<Category>();
+        categoryList.add(new Category("All books",R.drawable.book));
         categoryList.add(new Category("Arts&Music",R.drawable.ic_arts));
         categoryList.add(new Category("Biographies",R.drawable.ic_biography));
         categoryList.add(new Category("Business",R.drawable.ic_business));

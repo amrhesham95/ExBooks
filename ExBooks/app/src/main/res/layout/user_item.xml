@@ -39,6 +39,17 @@
                 android:layout_gravity="center"/>
 
 
+        <Button
+            android:id="@+id/deleteChatBtn"
+            android:layout_gravity="end"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_close_black_24dp"
+
+            />
+
+
+
 
 
         <de.hdodenhof.circleimageview.CircleImageView

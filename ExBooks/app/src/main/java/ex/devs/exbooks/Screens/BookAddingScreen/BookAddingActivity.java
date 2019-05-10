@@ -50,6 +50,8 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
     Spinner spinner;
     User user ;
     String returnedPlaceName;
+    FloatingActionButton uploadCam;
+    Button addBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +101,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
             }
         });
 
-        FloatingActionButton uploadCam = findViewById(R.id.captureBtn);
+        uploadCam = findViewById(R.id.captureBtn);
         uploadCam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +120,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         });
 */
 
-       Button addBtn = findViewById(R.id.addBtn);
+        addBtn = findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

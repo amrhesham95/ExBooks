@@ -67,18 +67,29 @@ public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategory
         });
         booksCategoryViewHolder.booksOfCatCard.setOnClickListener(event->
         {
-//            Activity activity=(Activity)mContext;
-//            Intent intent = new Intent(activity, BookDetailesActivity.class);
-//            intent.putExtra("book",books.get(i));
-//            activity.startActivity(intent);
-        });
-
-        booksCategoryViewHolder.clickedView.setOnClickListener((event)->{
             Activity activity=(Activity)mContext;
             Intent intent = new Intent(activity, BookDetailesActivity.class);
             intent.putExtra("book",books.get(i));
             activity.startActivity(intent);
         });
+
+        booksCategoryViewHolder.bookName.setOnClickListener(event->
+        {
+            Activity activity=(Activity)mContext;
+            Intent intent = new Intent(activity, BookDetailesActivity.class);
+            intent.putExtra("book",books.get(i));
+            activity.startActivity(intent);
+        });
+
+        booksCategoryViewHolder.bookImage.setOnClickListener(event->
+        {
+            Activity activity=(Activity)mContext;
+            Intent intent = new Intent(activity, BookDetailesActivity.class);
+            intent.putExtra("book",books.get(i));
+            activity.startActivity(intent);
+        });
+
+
         booksCategoryViewHolder.deletBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,10 +120,9 @@ public class BooksOfCategoryAdapter extends RecyclerView.Adapter<BooksOfCategory
         TextView bookDescription;
         Button deletBookBtn;
         CardView booksOfCatCard;
-        View clickedView;
+
         public BooksCategoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            clickedView=itemView;
             bookImage=(ImageView) itemView.findViewById(R.id.book_image_oncardLayout);
             bookName=(TextView)itemView.findViewById(R.id.bookName_oncardLayout);
             //bookDescription=(TextView)itemView.findViewById(R.id.book_description_onCardLayout);

@@ -2,8 +2,10 @@ package ex.devs.exbooks.model;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import ex.devs.exbooks.Screens.booksOfCategoryScreen.BooksOfCategoryContract;
+import ex.devs.exbooks.Screens.myBooksScreen.MyBooksActivity;
 import ex.devs.exbooks.Screens.myBooksScreen.MyBooksContract;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 
 import static android.support.constraint.Constraints.TAG;
@@ -29,7 +32,6 @@ public class BookDBService {
     MyBooksContract.MyBooksPresenterInerface myBooksPresenterInerface;
     FirebaseStorage storage ;
     StorageReference storageReference ;
-
     public BookDBService() {
         myRef = database.getReference("books");
         storage = FirebaseStorage.getInstance();
@@ -42,6 +44,7 @@ public class BookDBService {
     public BookDBService(BooksOfCategoryContract.BooksOfCategoryPresenterInterface booksOfCategoryPresenterInterface) {
         this.booksOfCategoryPresenterInterface = booksOfCategoryPresenterInterface;
         myRef = database.getReference("books");
+
     }
 
     public BookDBService(MyBooksContract.MyBooksPresenterInerface myBooksPresenterInerface) {
@@ -59,7 +62,6 @@ public class BookDBService {
     public void findByCategory(String category){
         ArrayList<Book> books=new ArrayList<>();
         //myRef=database.getReference(category);
-
         myRef.child(category).addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -104,9 +106,15 @@ public class BookDBService {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
+
+                    if(snapshot.getKey().equals("All books")){
+                        continue;
+                    }
+
+                    // System.out.println(myRef.getKey());
+                  //  Log.i("tag",dataSnapshot.toString());
                  for(DataSnapshot data:snapshot.getChildren()) {
                      Book book = data.getValue(Book.class);
-
                      String fuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                      String bookUser = book.getUser();
                      if (book.getUser().equals(fuser)) {
@@ -131,6 +139,7 @@ public class BookDBService {
 
 
        myRef.child(book.getCategory()).child(book.getBookID()).removeValue();
+        myRef.child("All books").child(book.getBookID()).removeValue();
        System.out.println("booktitle: " +book.getTitle());
         storageReference = storage.getReference("books/"+book.getTitle()+"/"+book.getTitle());
    //    storageReference = storageReference.child(book.getTitle());

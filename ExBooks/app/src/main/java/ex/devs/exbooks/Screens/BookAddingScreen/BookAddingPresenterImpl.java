@@ -34,6 +34,7 @@ public class BookAddingPresenterImpl  implements BookAddingContract.BookAddingPr
         mDatabaseReference = mFirebaseDatabase.getReference("books");
         System.out.println("--------"+book.getImgUrl());
         String bookKey=mDatabaseReference.child(book.getCategory()).child(mDatabaseReference.push().getKey()).getKey();
+        mDatabaseReference.child("All books").child(bookKey).setValue(book);
         book.setBookID(bookKey);
         mDatabaseReference.child(book.getCategory()).child(bookKey).setValue(book);
 

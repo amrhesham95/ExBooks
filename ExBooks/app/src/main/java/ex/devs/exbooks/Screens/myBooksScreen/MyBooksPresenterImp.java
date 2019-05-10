@@ -1,5 +1,7 @@
 package ex.devs.exbooks.Screens.myBooksScreen;
 
+import android.content.Context;
+
 import ex.devs.exbooks.model.Book;
 import ex.devs.exbooks.model.BookDBService;
 
@@ -25,6 +27,11 @@ public class MyBooksPresenterImp implements MyBooksContract.MyBooksPresenterIner
     @Override
     public void setUseBooks(ArrayList<Book> myBooks) {
         myBooksViewInterface.setUserBooks(myBooks);
+    }
+
+    @Override
+    public Context getContext() {
+        return (Context) myBooksViewInterface;
     }
 }
 

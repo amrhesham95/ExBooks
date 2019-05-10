@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Button;
 
 import ex.devs.exbooks.R;
 import ex.devs.exbooks.model.Chat;
@@ -34,11 +35,12 @@ public class ChatsActivity extends AppCompatActivity {
     ArrayList<Chatlist> uidListOfPplITalkedWith;
 //    ArrayList<String> uidListOfPplITalkedWith;
     CopyOnWriteArraySet<User> usersSet;
-
+    Button deleteChatBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
+        deleteChatBtn=findViewById(R.id.deleteChatBtn);
         chats_recycleView = (RecyclerView) findViewById(R.id.chats_recycler_view);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         chats_recycleView.setLayoutManager(layoutManager);

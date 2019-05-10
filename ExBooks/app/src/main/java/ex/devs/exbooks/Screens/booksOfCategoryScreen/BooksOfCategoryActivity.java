@@ -25,7 +25,7 @@ public class BooksOfCategoryActivity extends AppCompatActivity implements BooksO
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books_of_category_screen);
-
+        allBook=new ArrayList<>();
         booksOfCategoryPresenterInterface= new BooksOfCategoryPresenterImp(this);
         categoryBooksRecyleView=(RecyclerView)findViewById(R.id.category_books_recycleView);
         categoryBooksRecyleView.setHasFixedSize(true);
