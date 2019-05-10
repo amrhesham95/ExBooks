@@ -156,9 +156,20 @@ public class HomeActivity extends AppCompatActivity
             Intent intent=new Intent(this, ChatsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_myBooks) {
-            Intent intent=new Intent(this, MyBooksActivity.class);
+            Intent intent = new Intent(this, MyBooksActivity.class);
             startActivity(intent);
-
+        } else if (id == R.id.nav_share) {
+            try {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Ex-Books");
+                String shareMessage= "\nLet me recommend you this application\n\n";
+                shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=ex.devs.exbooks" +"\n\n";
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                startActivity(Intent.createChooser(shareIntent, "Share Ex-Books"));
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
         } else if (id == R.id.nav_logOut) {
             homePresenterInterface.signOut();
         }
