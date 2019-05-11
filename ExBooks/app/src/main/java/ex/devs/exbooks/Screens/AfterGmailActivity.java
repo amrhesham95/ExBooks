@@ -51,13 +51,13 @@ public class AfterGmailActivity extends AppCompatActivity {
     }
 
     public boolean checkPhone(String phone) {
-        regex = "01\\d{9}";
-
+     //   regex = "01\\d{9}";
+        regex = "^\\+(?:[0-9] ?){6,14}[0-9]$";
         // Create a Pattern object
         this.pattern = Pattern.compile(regex);
         // Now create matcher object.
         matcher = pattern.matcher(phone);
-        return matcher.find() && phone.length() == 11;
+        return matcher.find();
     }
 
 }
