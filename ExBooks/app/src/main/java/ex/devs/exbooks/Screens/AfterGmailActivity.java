@@ -32,7 +32,9 @@ public class AfterGmailActivity extends AppCompatActivity {
         nextBtn.setOnClickListener((event)->{
             String phoneText = phoneTF.getText().toString();
             if(phoneText!=null){
-                    if(checkPhone(phoneText)){
+                boolean checkPhone = !phoneText.isEmpty();
+
+                if(checkPhone){
                     FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
                     User user=new User(firebaseUser.getEmail(),phoneTF.getText().toString(),firebaseUser.getUid());
                     UserDBService userDBService=new UserDBService();
