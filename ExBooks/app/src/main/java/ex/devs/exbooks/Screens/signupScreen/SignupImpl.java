@@ -26,7 +26,9 @@ public class SignupImpl implements SignupContract.SignupPresenterInterface {
     public void signup(String email, String password,String phone) {
 
         if(email!=null && password!=null && phone != null){
-            boolean checkPhone = checkPhone(phone);
+            //boolean checkPhone = checkPhone(phone);
+            boolean checkPhone = !phone.isEmpty();
+
             boolean checkEmail    = email.equals("")    || email.contains(" ");
             boolean checkPassword = password.equals("") || password.contains(" ");
 

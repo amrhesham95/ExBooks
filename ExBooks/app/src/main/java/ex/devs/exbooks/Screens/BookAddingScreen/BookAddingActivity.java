@@ -131,6 +131,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
                         System.out.println("img not null");
                         bookAddingPresenter.storeImageBitmap(image_Bitmap, title.getText().toString(), title.getText().toString());
                         Toast.makeText(BookAddingActivity.this, "Book is added Successfully", Toast.LENGTH_SHORT).show();
+                        finish();
 
                     } else {
                         System.out.println("img is null");
@@ -143,7 +144,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
                     Toast.makeText(BookAddingActivity.this, "Please fill in all Fields ", Toast.LENGTH_SHORT).show();
 
                 }
-                finish();
+       //         finish();
 
             }
         });
