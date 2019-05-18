@@ -47,6 +47,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         categoryList.add(new Category("Romance",R.drawable.ic_romance));
         categoryList.add(new Category("Sci-Fi&Fantasy",R.drawable.ic_sci_fi));
         categoryList.add(new Category("Science&Math",R.drawable.ic_science));
+        categoryList.add(new Category("Self help",R.drawable.ic_selfhelp));
         categoryList.add(new Category("Sports",R.drawable.ic_sports));
         categoryList.add(new Category("Travel",R.drawable.ic_travel));
 

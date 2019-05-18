@@ -81,6 +81,7 @@ public class BookAddingActivity extends AppCompatActivity implements BookAddingC
         categories.add("Romance");
         categories.add("Sci-Fi&Fantasy");
         categories.add("Science&Math");
+        categories.add("Self help");
         categories.add("Sports");
         categories.add("Travel");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,categories);

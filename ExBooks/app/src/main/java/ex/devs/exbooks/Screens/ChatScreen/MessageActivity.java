@@ -83,8 +83,8 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 User user = dataSnapshot.getValue(User.class);
-
-                userEmail.setText(user.getEmail());
+                int hideTheEmail = user.getEmail().lastIndexOf("@");
+                userEmail.setText( user.getEmail().substring(0,hideTheEmail));
                 readMessages(fuser.getUid(),userId);
             }
 

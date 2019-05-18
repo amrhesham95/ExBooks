@@ -19,6 +19,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
     private Context context;
     private  CopyOnWriteArrayList allUsers;
+    private int hideTheEmail;
     public UserAdapter(Context context, CopyOnWriteArrayList<User> users) {
         this.context=context;
         allUsers=users;
@@ -33,7 +34,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int position) {
-        userViewHolder.usernameonChatsHistory.setText(allUsers.get(position).toString());
+        hideTheEmail=allUsers.get(position).toString().lastIndexOf("@");
+        userViewHolder.usernameonChatsHistory.setText(allUsers.get(position).toString().substring(0,hideTheEmail));
         userViewHolder.cardView.setOnClickListener((event)->{
             Intent intent=new Intent(context, MessageActivity.class);
             intent.putExtra("userID",((User)(allUsers.get(position))).getUserUID());

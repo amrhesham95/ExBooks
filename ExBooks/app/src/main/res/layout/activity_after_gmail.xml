@@ -91,6 +91,7 @@
                                 app:layout_constraintStart_toStartOf="parent" />
 
                             <android.support.design.widget.TextInputLayout
+                                android:hint=" Example:+20 01117232055"
                                 android:id="@+id/phoneNumberLayoutIDAfterG"
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
@@ -101,13 +102,15 @@
                                 android:theme="@style/AddBookTextLabel">
 
                                 <android.support.design.widget.TextInputEditText
+
+                                    android:autofillHints="a b2a"
                                     android:id="@+id/phoneGmailTFID"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:background="@color/colorHighlith"
                                     android:drawableLeft="@drawable/phone_layerlist"
                                     android:focusedByDefault="false"
-                                    android:hint="Phone"
+                                    android:hint=""
                                     android:inputType="phone"
                                     tools:layout_editor_absoluteX="16dp"
                                     tools:layout_editor_absoluteY="88dp" />
