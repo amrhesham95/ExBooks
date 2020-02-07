@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Screens.signupScreen.SignupScreen">
+    tools:context="ex.devs.exbooks.Screens.signupScreen.SignupScreen">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/firstNameTFID"
