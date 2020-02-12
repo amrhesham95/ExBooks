@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import ex.devs.exbooks.Screens.AfterGmailActivity;
 import ex.devs.exbooks.Screens.homeScreen.HomeActivity;
 import ex.devs.exbooks.Screens.signupScreen.SignupContract;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,7 +37,7 @@ public class SignupAuth {
                             Log.i("myLog","Sign up successfully");
                             Toast.makeText(signupPresenterInterface.getContext(), "Sign up successfully", Toast.LENGTH_SHORT).show();
                             //FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(signupPresenterInterface.getContext(), HomeActivity.class);
+                            Intent intent = new Intent(signupPresenterInterface.getContext(), AfterGmailActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             signupPresenterInterface.getContext().startActivity(intent);
