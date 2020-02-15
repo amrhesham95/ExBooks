@@ -20,9 +20,13 @@ public class ImageDownloaderService {
         // Download directly from StorageReference using Glide
         // (See MyAppGlideModule for Loader registration)
         System.out.println(storageReference);
-        GlideApp.with(context /* context */)
-                .load(storageReference).override(300,200)
-                .into(imageView);
+//        GlideApp.with(context /* context */)
+//                .load(storageReference).override(300,200)
+//                .into(imageView);
+
+            GlideApp.with(context).load(storageReference).into(imageView);
+
+
         // [END storage_load_with_glide]
     }
 

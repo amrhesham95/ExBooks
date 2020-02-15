@@ -24,6 +24,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import ex.devs.exbooks.Screens.ChatScreen.MessageActivity;
 import ex.devs.exbooks.R;
@@ -66,6 +69,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
         mCollapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         mCollapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
 
+
         setDataOfBook();
         bookDetailesPresenterInterface.getBookOwnerPhone(book.getUser());
         locationListener=new MyLocationListener();
@@ -78,11 +82,19 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
                 startActivity(intent);
             }
         });*/
-        chatBtn.setOnClickListener((event)->{
-            Intent intent=new Intent(this, MessageActivity.class);
-            intent.putExtra("userID",book.getUser());
-            startActivity(intent);
-        });
+
+        // so i can't chat with myself because it leads to crash
+        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(book.getUser())){
+            chatBtn.setOnClickListener((event)->{
+                Toast.makeText(this, "This book was added by you", Toast.LENGTH_LONG).show();
+            });
+        }else{
+            chatBtn.setOnClickListener((event)->{
+                Intent intent=new Intent(this, MessageActivity.class);
+                intent.putExtra("userID",book.getUser());
+                startActivity(intent);
+            });
+        } 
         showMapBtn.setOnClickListener((event)->{
             String geoUri = "http://maps.google.com/maps?q=loc:" + book.getReturnedPlaceLat() + "," + book.getReturnedPlaceLong();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
@@ -103,6 +115,7 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
 
 
 
+
                 bookImgInDialougView=dialog.findViewById(R.id.bookImageInDetailesDialog);
                 bookDetailesPresenterInterface.getBookImg(book.getImgUrl(),bookImgInDialougView);
 
@@ -111,11 +124,8 @@ public class BookDetailesActivity extends AppCompatActivity implements BookDetai
                 DisplayMetrics metrics = getResources().getDisplayMetrics();
                 int width = metrics.widthPixels;
                 int height = metrics.heightPixels;
-                dialog.getWindow().setLayout((6 * width)/7, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setLayout(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-
-
-                dialog.getWindow().setLayout((6*width)/7,(4*height)/5);
 
 
             }
