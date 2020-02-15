@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import ex.devs.exbooks.R;
@@ -32,20 +33,31 @@ import java.util.regex.Pattern;
 
 public class AfterGmailActivity extends AppCompatActivity {
     TextInputEditText phoneTF;
+    TextInputEditText verificationCodeTF;
     Button nextBtn;
+    Button verifyBtn;
     Matcher matcher ;
     Pattern pattern ;
     String regex;
+    String email;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     FirebaseAuth mAuth;
     Context con;
+    private String mVerificationId;
+    private PhoneAuthProvider.ForceResendingToken mResendToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_gmail);
         mAuth=FirebaseAuth.getInstance();
+        email = getIntent().getStringExtra("email");
         phoneTF=findViewById(R.id.phoneGmailTFID);
         nextBtn=findViewById(R.id.nextBtnID);
+        verifyBtn=findViewById(R.id.verifyBtnID);
+        verificationCodeTF = findViewById(R.id.verificationCodeTFID);
+        verificationCodeTF.setVisibility(View.GONE);
+        verifyBtn.setVisibility(View.GONE);
+        nextBtn.setText("Send Verification Code");
         con =this;
         nextBtn.setOnClickListener((event)->{
             String phoneText = phoneTF.getText().toString();
@@ -53,6 +65,10 @@ public class AfterGmailActivity extends AppCompatActivity {
                 boolean checkPhone = !phoneText.isEmpty();
 
                 if(checkPhone){
+                    verificationCodeTF.setVisibility(View.VISIBLE);
+                    verifyBtn.setVisibility(View.VISIBLE);
+                    verifyBtn.setText("Next");
+                    nextBtn.setVisibility(View.GONE);
                     mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
                         @Override
@@ -64,6 +80,20 @@ public class AfterGmailActivity extends AppCompatActivity {
                             //     detect the incoming verification SMS and perform verification without
                             //     user action.
 //                            Log.d(TAG, "onVerificationCompleted:" + credential);
+                            if(verificationCodeTF.getText().toString().isEmpty()){
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        verificationCodeTF.setText(credential.getSmsCode());
+//                                        try {
+//                                           wait(10);
+//                                        } catch (InterruptedException e) {
+//                                            e.printStackTrace();
+//                                        }
+                                    }
+                                });
+//
+                            }
                             signInWithPhoneAuthCredential(credential);
                         }
 
@@ -101,7 +131,10 @@ public class AfterGmailActivity extends AppCompatActivity {
 //                            mCallbacks.onVerificationCompleted();
 //                            signInWithPhoneAuthCredential(PhoneAuthProvider.getCredential(verificationId,henna el code ely gy mn l textfield ly hanzwdo));
 
-                            Toast.makeText(AfterGmailActivity.this, verificationId, Toast.LENGTH_LONG).show();
+                            //signInWithPhoneAuthCredential(PhoneAuthProvider.getCredential(verificationId,verificationCodeTF.getText().toString()));
+                            mVerificationId = verificationId;
+                            mResendToken = token;
+                       //     Toast.makeText(AfterGmailActivity.this, verificationId, Toast.LENGTH_LONG).show();
 
 
                         }
@@ -114,19 +147,24 @@ public class AfterGmailActivity extends AppCompatActivity {
                             this,               // Activity (for callback binding)
                             mCallbacks);        // OnVerificationStateChangedCallbacks
 
-
-
-
-
-
-
-
                 } else{
                         Toast.makeText(this, "Please enter a valid Phone Number", Toast.LENGTH_SHORT).show();
                     }
             }else{
                 Toast.makeText(this, "Please Enter a Phone Number", Toast.LENGTH_SHORT).show();
             }
+        });
+
+
+        verifyBtn.setOnClickListener((event)->{
+            String code = verificationCodeTF.getText().toString();
+            if(code.isEmpty()){
+                Toast.makeText(this, "Please enter the Verification Code", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId,code);
+            mCallbacks.onVerificationCompleted(credential);
+        //    signInWithPhoneAuthCredential(credential);
         });
     }
 
@@ -153,7 +191,7 @@ public class AfterGmailActivity extends AppCompatActivity {
 
 
                             FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-                            User user=new User(firebaseUser.getEmail(),phoneTF.getText().toString(),firebaseUser.getUid());
+                            User user =new User(firebaseUser.getEmail(),phoneTF.getText().toString(),firebaseUser.getUid());
                             UserDBService userDBService=new UserDBService();
                             userDBService.addUser(user);
                             Intent intent = new Intent(con, HomeActivity.class);
@@ -164,6 +202,7 @@ public class AfterGmailActivity extends AppCompatActivity {
                         } else {
                             // Sign in failed, display a message and update the UI
 //                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(AfterGmailActivity.this, "Invalid Verification Code", Toast.LENGTH_SHORT).show();
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
                             }

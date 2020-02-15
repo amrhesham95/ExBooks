@@ -91,7 +91,6 @@
                                 app:layout_constraintStart_toStartOf="parent" />
 
                             <android.support.design.widget.TextInputLayout
-                                android:hint=" Example:+20 01117232055"
                                 android:id="@+id/phoneNumberLayoutIDAfterG"
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
@@ -99,14 +98,41 @@
                                 android:layout_marginTop="20dp"
                                 android:layout_marginBottom="8dp"
                                 android:focusedByDefault="false"
+                                android:hint=" Example:+20 01117232055"
                                 android:theme="@style/AddBookTextLabel">
 
                                 <android.support.design.widget.TextInputEditText
 
-                                    android:autofillHints="a b2a"
                                     android:id="@+id/phoneGmailTFID"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
+                                    android:autofillHints="a b2a"
+                                    android:background="@color/colorHighlith"
+                                    android:drawableLeft="@drawable/phone_layerlist"
+                                    android:focusedByDefault="false"
+                                    android:hint=""
+                                    android:inputType="phone"
+                                    tools:layout_editor_absoluteX="16dp"
+                                    tools:layout_editor_absoluteY="88dp" />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/verificationCodeLayoutIDAfterG"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="8dp"
+                                android:focusedByDefault="false"
+                                android:hint="Enter Verification Code"
+                                android:theme="@style/AddBookTextLabel">
+
+                                <android.support.design.widget.TextInputEditText
+
+                                    android:id="@+id/verificationCodeTFID"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:autofillHints="a b2a"
                                     android:background="@color/colorHighlith"
                                     android:drawableLeft="@drawable/phone_layerlist"
                                     android:focusedByDefault="false"
@@ -126,22 +152,44 @@
                     android:layout_gravity="center"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="15dp">
+
                     <com.balysv.materialripple.MaterialRippleLayout
+                        style="@style/ripple"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/ripple">
+                        android:layout_height="wrap_content">
+
                         <Button
                             android:id="@+id/nextBtnID"
                             android:layout_width="wrap_content"
                             android:layout_height="43dp"
                             android:background="@drawable/pressed_btn"
-                            android:text="Next"
+                            android:shadowColor="@color/quantum_grey"
                             android:shadowDx="2"
                             android:shadowDy="2"
                             android:shadowRadius="15"
+                            android:text="Next"
+                            android:textColor="#FFFFFf"
+                            android:textStyle="bold" />
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        style="@style/ripple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/verifyBtnID"
+                            android:layout_width="wrap_content"
+                            android:layout_height="43dp"
+                            android:background="@drawable/pressed_btn"
                             android:shadowColor="@color/quantum_grey"
+                            android:shadowDx="2"
+                            android:shadowDy="2"
+                            android:shadowRadius="15"
+                            android:text="Verify"
+                            android:textColor="#FFFFFf"
                             android:textStyle="bold"
-                            android:textColor="#FFFFFf"/>
+                            android:visibility="gone" />
                     </com.balysv.materialripple.MaterialRippleLayout>
                 </android.support.v7.widget.CardView>
             </LinearLayout>

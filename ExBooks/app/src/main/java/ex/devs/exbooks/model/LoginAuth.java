@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginAuth {
     LoginContract.loginPresenterInterface loginPresenterInterface;
@@ -39,6 +40,7 @@ public class LoginAuth {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Intent intent = new Intent(loginPresenterInterface.getContext(), AfterGmailActivity.class);
+                            intent.putExtra("email",email);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             loginPresenterInterface.getContext().startActivity(intent);
