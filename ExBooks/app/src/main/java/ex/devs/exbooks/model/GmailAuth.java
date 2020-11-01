@@ -1,7 +1,9 @@
 package ex.devs.exbooks.model;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -96,7 +98,10 @@ public class GmailAuth {
     public void checkCurrentUser() {
         // [START check_current_user]
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+        SharedPreferences sharedPreferences = loginPresenterInterface.getContext().getSharedPreferences("main",Context.MODE_PRIVATE);
+        boolean isPhoneAuth = sharedPreferences.getBoolean("isPhoneAuth", false);
+
+        if (user != null && isPhoneAuth) {
             Intent intent=new Intent(loginPresenterInterface.getContext(), HomeActivity.class);
             loginPresenterInterface.getContext().startActivity(intent);
 

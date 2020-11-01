@@ -3,6 +3,7 @@ package ex.devs.exbooks.Screens;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -140,6 +141,7 @@ public class AfterGmailActivity extends AppCompatActivity {
                         }
                     };
 
+
                     PhoneAuthProvider.getInstance().verifyPhoneNumber(
                             phoneTF.getText().toString(),        // Phone number to verify
                             60,                 // Timeout duration
@@ -178,7 +180,8 @@ public class AfterGmailActivity extends AppCompatActivity {
         return matcher.find();
     }
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        mAuth.signInWithCredential(credential)
+        FirebaseAuth.getInstance().getCurrentUser().unlink(credential.getProvider());
+        FirebaseAuth.getInstance().getCurrentUser().linkWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                     @Override
@@ -189,7 +192,12 @@ public class AfterGmailActivity extends AppCompatActivity {
 
 //                            FirebaseUser user = task.getResult().getUser();
 
-
+                            // save phone number or cred to shared preference here because we gonna need to check on both user and cred (phone)
+                            // to decide which screen we gonna open (login,gmail,home)
+                            SharedPreferences preferences = getSharedPreferences("main",Context.MODE_PRIVATE);
+                            SharedPreferences.Editor edit = preferences.edit();
+                            edit.putBoolean("isPhoneAuth",true);
+                            edit.commit();
                             FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
                             User user =new User(firebaseUser.getEmail(),phoneTF.getText().toString(),firebaseUser.getUid());
                             UserDBService userDBService=new UserDBService();
@@ -200,9 +208,13 @@ public class AfterGmailActivity extends AppCompatActivity {
                             startActivity(intent);
                             // ...
                         } else {
-                            // Sign in failed, display a message and update the UI
-//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                             Sign in failed, display a message and update the UI
+                            Log.w("", "signInWithCredential:failure", task.getException());
                             Toast.makeText(AfterGmailActivity.this, "Invalid Verification Code", Toast.LENGTH_SHORT).show();
+                            SharedPreferences preferences = getSharedPreferences("main",Context.MODE_PRIVATE);
+                            SharedPreferences.Editor edit = preferences.edit();
+                            edit.putBoolean("isPhoneAuth",false);
+                            edit.commit();
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
                             }
