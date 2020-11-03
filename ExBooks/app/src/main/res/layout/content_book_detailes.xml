@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.NestedScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,14 +13,14 @@
     tools:showIn="@layout/activity_book_detailes"
     android:background="@color/colorHighlith"
     >
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
     android:animateLayoutChanges="true">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/categoryCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,9 +76,9 @@
 
 
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardViewdesc_bookdetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,10 +129,10 @@
                 />
 
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardViewloc_bookdetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -187,9 +187,9 @@
                  />
 
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/callFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -203,7 +203,7 @@
         app:layout_constraintVertical_bias="0.143"
         app:srcCompat="@drawable/contact" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/showMap_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
         app:layout_constraintVertical_bias="0.143"
         app:srcCompat="@drawable/locmarker" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
 
         android:id="@+id/chat_btn"
         android:layout_width="wrap_content"
@@ -234,5 +234,5 @@
         app:srcCompat="@drawable/ic_chat" />
 
 
-</android.support.constraint.ConstraintLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

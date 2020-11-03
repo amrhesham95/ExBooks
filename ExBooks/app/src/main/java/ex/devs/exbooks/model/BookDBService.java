@@ -1,11 +1,9 @@
 package ex.devs.exbooks.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import ex.devs.exbooks.Screens.booksOfCategoryScreen.BooksOfCategoryContract;
-import ex.devs.exbooks.Screens.myBooksScreen.MyBooksActivity;
 import ex.devs.exbooks.Screens.myBooksScreen.MyBooksContract;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -19,10 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.net.SocketTimeoutException;
 import java.util.ArrayList;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class BookDBService {
 
@@ -82,7 +77,7 @@ public class BookDBService {
         @Override
         public void onCancelled(DatabaseError error) {
             // Failed to read value
-            Log.w(TAG, "Failed to read value.", error.toException());
+            Log.w("TAG", "Failed to read value.", error.toException());
         }
     });
 

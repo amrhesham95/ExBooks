@@ -1,7 +1,7 @@
 package ex.devs.exbooks.Screens.bookDetailesScreen;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.widget.ImageView;
 
 import ex.devs.exbooks.model.ImageDownloaderService;

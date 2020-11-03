@@ -3,7 +3,7 @@ package ex.devs.exbooks.model;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import ex.devs.exbooks.Screens.BookAddingScreen.BookAddingContract;

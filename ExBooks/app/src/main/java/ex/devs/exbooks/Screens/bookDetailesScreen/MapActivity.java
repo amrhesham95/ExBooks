@@ -2,7 +2,7 @@ package ex.devs.exbooks.Screens.bookDetailesScreen;
 
 import android.graphics.Color;
 import android.location.Location;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 
 import ex.devs.exbooks.R;
