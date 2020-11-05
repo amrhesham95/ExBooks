@@ -1,4 +1,4 @@
-package ex.devs.exbooks.Screens.ChatScreen;
+package ex.devs.exbooks.ui.chat.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +17,11 @@ import android.widget.Toast;
 import ex.devs.exbooks.R;
 import ex.devs.exbooks.model.Chat;
 import ex.devs.exbooks.model.MessageAdapter;
-import ex.devs.exbooks.model.Notifications.APIService;
+import ex.devs.exbooks.networking.api.ApiService;
 import ex.devs.exbooks.model.Notifications.Client;
-import ex.devs.exbooks.model.Notifications.Data;
+import ex.devs.exbooks.networking.model.Data;
 import ex.devs.exbooks.model.Notifications.MyResponse;
-import ex.devs.exbooks.model.Notifications.Sender;
+import ex.devs.exbooks.networking.model.Sender;
 import ex.devs.exbooks.model.Notifications.Token;
 import ex.devs.exbooks.model.User;
 import retrofit2.Call;
@@ -52,7 +52,7 @@ public class MessageActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MessageAdapter messageAdapter;
     String userId;
-    APIService apiService ;
+    ApiService apiService ;
     boolean notify = false ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class MessageActivity extends AppCompatActivity {
         fuser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("users").child(userId);
         userEmail = findViewById(R.id.username);
-        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(ApiService.class);
 
         recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());

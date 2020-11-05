@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import ex.devs.exbooks.Screens.ChatScreen.MessageActivity;
+import ex.devs.exbooks.ui.chat.view.MessageActivity;
 
 public class MyFirebaseMessaging extends FirebaseMessagingService {
 

@@ -53,7 +53,7 @@
         <activity android:name="ex.devs.exbooks.Screens.chatHistoryScreen.ChatsActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="ex.devs.exbooks.Screens.ChatScreen.MessageActivity"
+            android:name="ex.devs.exbooks.ui.chat.view.MessageActivity"
             android:label="@string/title_activity_message"
             android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name="ex.devs.exbooks.Screens.bookDetailesScreen.BookDetailesActivity"

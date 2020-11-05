@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import ex.devs.exbooks.R;
-import ex.devs.exbooks.Screens.ChatScreen.MessageActivity;
+import ex.devs.exbooks.ui.chat.view.MessageActivity;
 import ex.devs.exbooks.model.User;
 
 import java.util.concurrent.CopyOnWriteArrayList;

@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import ex.devs.exbooks.Screens.ChatScreen.MessageActivity;
+import ex.devs.exbooks.ui.chat.view.MessageActivity;
 import ex.devs.exbooks.R;
 import ex.devs.exbooks.model.Book;
 
